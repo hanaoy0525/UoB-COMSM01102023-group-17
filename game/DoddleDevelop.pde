@@ -37,25 +37,17 @@ class grid{
       
       for (int j = 0; j < y; j++){
          for (int i = 0; i < x; i++){
-            if (random(100) > 97) {
-           /*
-               board[j][i] = new Cell((int) random(255), (int) random(255), (int) random(255));
+            if (random(100) > 97){
 
-               if (i - 1 >= 0){
-                  board[j][i - 1] = new Cell((int) random(255), (int) random(255), (int) random(255));
-               }
-               
-               if (i + 1 < 40){
-                  board[j][i + 1] = new Cell((int) random(255), (int) random(255), (int) random(255));
-               }
-          */   
-               
                int len =(int) random(2)+4;
-               for(int k=0;k<len && i+k<40;k++){
-                 board[j][i+k]= new Cell((int) random(255), (int) random(255), (int) random(255));
+               for(int k = 0;k < len && i+k < 40;k++){
+                 board[j][i + k] = new Cell((int) random(255), (int) random(255), (int) random(255));
                }
-               println(i + " " + len);
-               i=i+len;
+               i=i+len - 1;
+               
+               while (i < x){
+                 board[j][i++] = new Cell();
+               }
                
             }else {
                board[j][i] = new Cell();
@@ -87,24 +79,20 @@ void setup(){
 void draw(){
    background(255);
    doddleDraw();
- 
 }
 
 void doddleDraw(){
    printBoard();
    
    if (testGrid.dir == direction.up){
-      if (testGrid.board[testGrid.doddleY - 1][testGrid.doddleX].isSolid){
-         testGrid.dir = direction.down;
-         return;
-      }
+
       testGrid.doddleY--;
       testGrid.curstep++;
       if (testGrid.curstep == testGrid.maxstep){
          testGrid.dir = direction.down;
       }
    }else if (testGrid.dir == direction.down){
-      if (testGrid.doddleY - testGrid.pivt >= 39 && testGrid.doddleY>=159){
+      if (testGrid.doddleY - testGrid.pivt >= 39 || testGrid.doddleY >= 159){
          exit();
       }
       
@@ -124,9 +112,8 @@ void doddleDraw(){
       testGrid.curstep--;
       
    }
-   delay(45);
+   delay(60);
    
-    
 }
 
 
@@ -157,18 +144,13 @@ void printBoard(){
 
 void keyPressed(){
    if (keyCode == LEFT){
-      if (testGrid.doddleX - 1 >= 0 && testGrid.board[testGrid.doddleY][testGrid.doddleX - 1].isSolid){
-         return;
-      }
+
       testGrid.doddleX--;
       if (testGrid.doddleX == 0){
          testGrid.doddleX = 39;
       }
 
    }else if (keyCode == RIGHT){
-      if (testGrid.doddleX + 1 < 40 && testGrid.board[testGrid.doddleY][testGrid.doddleX + 1].isSolid){
-         return;
-      }
       testGrid.doddleX++;
       if (testGrid.doddleX == 40){
          testGrid.doddleX = 0;
