@@ -38,7 +38,9 @@ class grid{
       for (int j = 0; j < y; j++){
          for (int i = 0; i < x; i++){
             if (random(100) > 97) {
+           /*
                board[j][i] = new Cell((int) random(255), (int) random(255), (int) random(255));
+
                if (i - 1 >= 0){
                   board[j][i - 1] = new Cell((int) random(255), (int) random(255), (int) random(255));
                }
@@ -46,14 +48,22 @@ class grid{
                if (i + 1 < 40){
                   board[j][i + 1] = new Cell((int) random(255), (int) random(255), (int) random(255));
                }
+          */   
+               
+               int len =(int) random(2)+4;
+               for(int k=0;k<len && i+k<40;k++){
+                 board[j][i+k]= new Cell((int) random(255), (int) random(255), (int) random(255));
+               }
+               println(i + " " + len);
+               i=i+len;
+               
             }else {
                board[j][i] = new Cell();
             }
          }
-         
-         doddleX = x / 2;
-         doddleY = y - 10;
       }
+      doddleX = x / 2; //<>//
+      doddleY = y - 10;
       pivt = y - 40;
       curstep = 0;
       maxstep = 8;
@@ -94,11 +104,11 @@ void doddleDraw(){
          testGrid.dir = direction.down;
       }
    }else if (testGrid.dir == direction.down){
-      if (testGrid.doddleY - testGrid.pivt >= 39){
+      if (testGrid.doddleY - testGrid.pivt >= 39 && testGrid.doddleY>=159){
          exit();
       }
       
-      println(testGrid.doddleY);
+      //println(testGrid.doddleY);
       
       if (testGrid.doddleY + 1 < 160 && testGrid.board[testGrid.doddleY + 1][testGrid.doddleX].isSolid){
         testGrid.dir = direction.up;
@@ -128,6 +138,7 @@ void printBoard(){
         if (j == testGrid.doddleY && i == testGrid.doddleX){
            fill(0, 0, 0);  
         }else{
+           println(j + " " + i);
            if (!testGrid.board[j][i].isSolid){
               noStroke();
            }else{
