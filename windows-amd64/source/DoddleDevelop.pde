@@ -90,7 +90,7 @@ void doddleDraw(){
          testGrid.dir = direction.down;
       }
    }else if (testGrid.dir == direction.down){
-      if (testGrid.doddleY - testGrid.pivt >= 39){
+      if (testGrid.doddleY - testGrid.pivt >= 39 || testGrid.doddleY ==159 ){
          exit();
       }
       

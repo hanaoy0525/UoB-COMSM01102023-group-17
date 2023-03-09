@@ -97,17 +97,17 @@ public void doddleDraw(){
    printBoard();
    
    if (testGrid.dir == direction.up){
-      if (testGrid.board[testGrid.doddleY - 1][testGrid.doddleX].isSolid){
-         testGrid.dir = direction.down;
-         return;
-      }
+      //if (testGrid.board[testGrid.doddleY - 1][testGrid.doddleX].isSolid){
+         //testGrid.dir = direction.down;
+        // return;
+      //}
       testGrid.doddleY--;
       testGrid.curstep++;
       if (testGrid.curstep == testGrid.maxstep){
          testGrid.dir = direction.down;
       }
    }else if (testGrid.dir == direction.down){
-      if (testGrid.doddleY - testGrid.pivt >= 39){
+      if (testGrid.doddleY - testGrid.pivt >= 39 || testGrid.doddleY>=159){
          exit();
       }
       
@@ -117,9 +117,8 @@ public void doddleDraw(){
         testGrid.dir = direction.up;
         if (testGrid.curstep > 0){
            testGrid.pivt -= testGrid.curstep;
-           testGrid.curstep = 0;
         }
-        
+        testGrid.curstep = 0;
         return;
       }
       testGrid.doddleY++;
