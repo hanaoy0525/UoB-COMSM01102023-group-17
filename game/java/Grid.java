@@ -27,7 +27,7 @@ public class Grid{
 					int len = 8;
 
 
-					for(int k = 0; k < len && i + k < 40; k++){
+					for(int k = 0; k < len && i + k < x; k++){
 						if (type != Type.FLOAT){
 							board[j][i + k] = new Cell(type);
 						}else{
@@ -43,10 +43,10 @@ public class Grid{
 		}
 		doddleX = x / 2;
 		doddleY = y - 10;
-		pivt = y - 80;
+		pivt = y - Sketch.windowHeight;
 		curstep = 0;
-		maxstep = 25;
-		dir = direction.up;
+		maxstep = (int) (Sketch.windowHeight / 2 * 0.75);
+		dir = direction.UP;
 	}
 
 	private int random(int i){

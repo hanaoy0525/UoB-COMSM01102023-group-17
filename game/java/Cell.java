@@ -5,4 +5,5 @@ public class Cell{
 		this.type = type;
 	}
 
+
 }

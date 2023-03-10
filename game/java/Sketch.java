@@ -1,22 +1,29 @@
 import processing.core.PApplet;
 
-import java.awt.geom.Arc2D;
+
 
 public class Sketch extends PApplet {
+
+	public static int windowHeight = 80;
+	public static int totalHeight = 400;
+
+	public static int optic = 150;
+
+	public static int width = 40;
 	void doddleDraw(){
 		printBoard();
-		if (testGrid.dir == direction.up){
+		if (testGrid.dir == direction.UP){
 			testGrid.doddleY--;
 			testGrid.curstep++;
 			if (testGrid.curstep == testGrid.maxstep){
-				testGrid.dir = direction.down;
+				testGrid.dir = direction.DOWN;
 			}
-		}else if (testGrid.dir == direction.down){
-			if (testGrid.doddleY - testGrid.pivt >= 79 || testGrid.doddleY >= 399){
+		}else if (testGrid.dir == direction.DOWN){
+			if (testGrid.doddleY - testGrid.pivt >= height - 1 || testGrid.doddleY >= totalHeight - 1){
 				exit();
 			}
-			if (testGrid.doddleY + 1 < 399 && testGrid.board[testGrid.doddleY + 1][testGrid.doddleX].type != Type.EMPTY){
-				testGrid.dir = direction.up;
+			if (testGrid.doddleY + 1 < totalHeight - 1 && testGrid.board[testGrid.doddleY + 1][testGrid.doddleX].type != Type.EMPTY){
+				testGrid.dir = direction.UP;
 				if (testGrid.curstep > 0) {
 					testGrid.pivt -= testGrid.curstep;
 				}
@@ -41,10 +48,10 @@ public class Sketch extends PApplet {
 	}
 
 	void printBoard(){
-		for (int j = testGrid.pivt; j < testGrid.pivt + 80; j++){
+		for (int j = testGrid.pivt; j < testGrid.pivt + windowHeight; j++){
 			int mark = testGrid.pivt;
-			for (int i = 0; i < 40; i++){
-				int optic = 150;
+			for (int i = 0; i < width; i++){
+
 				if (j == testGrid.doddleY && i == testGrid.doddleX){
 					fill(0, 0, 0);
 				}else{
@@ -76,19 +83,19 @@ public class Sketch extends PApplet {
 			for (int i = 0; i < testGrid.board[0].length; i++){
 				if (testGrid.board[j][i].type == Type.FLOAT){
 					if (((FloatCell) testGrid.board[j][i]).dir == direction.LEFT){
-						if (i - 1 >= 0 && i + 3 < 40){
+						if (i - 1 >= 0 && i + 3 < width){
 							testGrid.board[j][i - 1] = new FloatCell(direction.LEFT);
 							testGrid.board[j][i + 3] = new Cell(Type.EMPTY);
 
 						}
 					}else if (((FloatCell) testGrid.board[j][i]).dir == direction.RIGHT){
-						if (i + 4 < 40 && i - 3 >= 0){
+						if (i + 4 < width && i - 3 >= 0){
 							testGrid.board[j][i + 1] = new FloatCell(direction.RIGHT);
 							testGrid.board[j][i + 4] = new FloatCell();
 							testGrid.board[j][i] = new Cell(Type.EMPTY);
 						}
 					}
-					i = 40;
+					i = width;
 				}
 			}
 		}
@@ -124,7 +131,7 @@ public class Sketch extends PApplet {
 		size(400, 800); // Set the size of the sketch window
 	}
 
-	public void setup(){
+	public void setUP(){
 		size(400, 800);
 		frameRate(60);
 		noStroke();
