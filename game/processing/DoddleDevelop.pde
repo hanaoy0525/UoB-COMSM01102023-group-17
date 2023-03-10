@@ -54,18 +54,16 @@ class grid{
             }
          }
       }
-      doddleX = x / 2; //<>//
+      doddleX = x / 2;
       doddleY = y - 10;
       pivt = y - 40;
       curstep = 0;
       maxstep = 8;
       dir = direction.up;
    }
-
 }
 
 grid testGrid = new grid(160, 40);
-
 
 void setup(){
    size(400, 400);
@@ -113,7 +111,6 @@ void doddleDraw(){
       
    }
    delay(60);
-   
 }
 
 
