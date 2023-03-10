@@ -11,20 +11,31 @@ public class Grid{
 
 		for (int j = 0; j < y; j++){
 			for (int i = 0; i < x; i++){
-				if (random(100) > 97){
-
-					int len =(int) random(2)+4;
-					for(int k = 0;k < len && i+k < 40;k++){
-						board[j][i + k] = new Cell(true);
+				int rand = random(100);
+				if (rand <= 94) {
+					board[j][i] = new Cell(Type.EMPTY);
+					continue;
+				}else{
+					Type type;
+					if (rand <= 96){
+						type = Type.CONSTANT;
+					}else if (rand <= 98){
+						type = Type.ONETIME;
+					}else{
+						type = Type.FLOAT;
 					}
-					i=i+len - 1;
-
+					int len = random(2) + 4;
+					for(int k = 0; k < len && i + k < 40; k++){
+						if (type != Type.FLOAT){
+							board[j][i + k] = new Cell(type);
+						}else{
+							board[j][i + k] = new FloatCell();
+						}
+					}
+					i += len - 1;
 					while (i < x){
-						board[j][i++] = new Cell(false);
+						board[j][i++] = new Cell(Type.EMPTY);
 					}
-
-				}else {
-					board[j][i] = new Cell(false);
 				}
 			}
 		}
@@ -36,7 +47,7 @@ public class Grid{
 		dir = direction.up;
 	}
 
-	private int random(int i) {
+	private int random(int i){
 		return (int) (Math.random() * i);
 	}
 }

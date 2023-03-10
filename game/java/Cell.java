@@ -1,9 +1,8 @@
 public class Cell{
-	boolean isSolid;
+	Type type;
 
-
-	public Cell(boolean isSolid){
-		this.isSolid = isSolid;
+	public Cell(Type type){
+		this.type = type;
 	}
 
 }
