@@ -10,6 +10,11 @@ public class FloatCell extends Cell{
         }
     }
 
+    public FloatCell(direction dir) {
+        super(Type.FLOAT);
+        this.dir = dir;
+    }
+
     public void changeDirection(){
         if (this.dir == direction.LEFT){
             this.dir = direction.RIGHT;

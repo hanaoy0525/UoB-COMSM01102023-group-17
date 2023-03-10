@@ -3,8 +3,6 @@ import processing.core.PApplet;
 import java.awt.geom.Arc2D;
 
 public class Sketch extends PApplet {
-
-
 	void doddleDraw(){
 		printBoard();
 		if (testGrid.dir == direction.up){
@@ -26,10 +24,10 @@ public class Sketch extends PApplet {
 				if (testGrid.board[testGrid.doddleY + 1][testGrid.doddleX].type == Type.ONETIME){
 					int left = testGrid.doddleX;
 					int right = testGrid.doddleX + 1;
-					while (testGrid.board[testGrid.doddleY + 1][left].type == Type.ONETIME) {
+					while (left >= 0 && testGrid.board[testGrid.doddleY + 1][left].type == Type.ONETIME) {
 						testGrid.board[testGrid.doddleY + 1][left--].type = Type.EMPTY;
 					}
-					while (testGrid.board[testGrid.doddleY + 1][right].type == Type.ONETIME) {
+					while (right < 40 && testGrid.board[testGrid.doddleY + 1][right].type == Type.ONETIME) {
 						testGrid.board[testGrid.doddleY + 1][right++].type = Type.EMPTY;
 					}
 				}
@@ -38,10 +36,9 @@ public class Sketch extends PApplet {
 			testGrid.doddleY++;
 			testGrid.curstep--;
 			}
-		delay(60 + testGrid.curstep * testGrid.curstep);
+		delay(60);
+//		delay(50 + (int) Math.pow(2, testGrid.curstep) / 2);
 	}
-
-
 
 	void printBoard(){
 		for (int j = testGrid.pivt; j < testGrid.pivt + 40; j++){
@@ -51,12 +48,12 @@ public class Sketch extends PApplet {
 				if (j == testGrid.doddleY && i == testGrid.doddleX){
 					fill(0, 0, 0);
 				}else{
-					println(j + " " + i);
+
 					if (testGrid.board[j][i].type == Type.EMPTY) {
 						noStroke();
 						fill(255,255,255, optic);
 					}else{
-						println("not empty");
+
 						stroke(0);
 						if (testGrid.board[j][i].type == Type.CONSTANT){
 							fill(124,252,0, optic);
@@ -75,44 +72,32 @@ public class Sketch extends PApplet {
 	static int floatcnt = 0;
 
 	private void floatCellMove() {
-
 		for (int j = 0; j < testGrid.board.length; j++){
 			for (int i = 0; i < testGrid.board[0].length; i++){
 				if (testGrid.board[j][i].type == Type.FLOAT){
-					if (i + 1 < 40){
-						((FloatCell) testGrid.board[j][i + 1]).dir = ((FloatCell) testGrid.board[j][i]).dir;
-						if (floatcnt == 5){
-							((FloatCell) testGrid.board[j][i + 1]).changeDirection();
+					if (((FloatCell) testGrid.board[j][i]).dir == direction.LEFT){
+						if (i - 1 >= 0 && i + 3 < 40){
+							testGrid.board[j][i - 1] = new FloatCell(direction.LEFT);
+							testGrid.board[j][i + 3] = new Cell(Type.EMPTY);
+
 						}
-						int last = i + 1;
-						while (last < 39 && testGrid.board[j][last] instanceof FloatCell){
-							last++;
-						}
-						testGrid.board[j][last] = new FloatCell();
-						testGrid.board[j][i] = new Cell(Type.EMPTY);
-					}
-					/*
-					else{
-						if (i - 1 < 40){
-							((FloatCell) testGrid.board[j][i - 1]).dir = ((FloatCell) testGrid.board[j][i]).dir;
-							if (floatcnt == 5){
-								((FloatCell) testGrid.board[j][i + 1]).changeDirection();
-							}
-							int last = i - 1;
-							while (testGrid.board[j][last] instanceof FloatCell){
-								last--;
-							}
-							testGrid.board[j][last] = new FloatCell();
+					}else if (((FloatCell) testGrid.board[j][i]).dir == direction.RIGHT){
+						if (i + 4 < 40 && i - 3 >= 0){
+							testGrid.board[j][i + 1] = new FloatCell(direction.RIGHT);
+							testGrid.board[j][i + 4] = new FloatCell();
+							testGrid.board[j][i] = new Cell(Type.EMPTY);
 						}
 					}
-					*/
+					i = 40;
 				}
 			}
 		}
 		floatcnt++;
 		if (floatcnt >= 6){
+			testGrid.changeDir();
 			floatcnt = 0;
 		}
+		println(floatcnt);
 	}
 
 	@Override
