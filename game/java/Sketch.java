@@ -34,7 +34,7 @@ public class Sketch extends PApplet {
 			testGrid.curstep--;
 
 		}
-		delay(60);
+		delay(60 + testGrid.curstep * testGrid.curstep);
 	}
 
 	void printBoard(){
