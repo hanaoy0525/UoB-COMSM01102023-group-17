@@ -46,13 +46,14 @@ public class Sketch extends PApplet {
 					fill(0, 0, 0);
 				}else{
 					println(j + " " + i);
-					if (!testGrid.board[j][i].isSolid){
-						noStroke();
-					}else{
+					if (testGrid.board[j][i].isSolid){
 						stroke(0);
+						fill(124,252,0, optic);
+					}else{
+						noStroke();
+						fill(255,255,255, optic);
 					}
 
-					fill(testGrid.board[j][i].r, testGrid.board[j][i].g, testGrid.board[j][i].b, optic);
 
 				}
 				rect(i * 10, (j - mark) * 10, 10, 10);

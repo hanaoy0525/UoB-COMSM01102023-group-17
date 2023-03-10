@@ -15,16 +15,16 @@ public class Grid{
 
 					int len =(int) random(2)+4;
 					for(int k = 0;k < len && i+k < 40;k++){
-						board[j][i + k] = new Cell((int) random(255), (int) random(255), (int) random(255));
+						board[j][i + k] = new Cell(true);
 					}
 					i=i+len - 1;
 
 					while (i < x){
-						board[j][i++] = new Cell();
+						board[j][i++] = new Cell(false);
 					}
 
 				}else {
-					board[j][i] = new Cell();
+					board[j][i] = new Cell(false);
 				}
 			}
 		}
