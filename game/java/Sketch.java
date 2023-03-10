@@ -12,10 +12,10 @@ public class Sketch extends PApplet {
 				testGrid.dir = direction.down;
 			}
 		}else if (testGrid.dir == direction.down){
-			if (testGrid.doddleY - testGrid.pivt >= 39 || testGrid.doddleY >= 159){
+			if (testGrid.doddleY - testGrid.pivt >= 79 || testGrid.doddleY >= 399){
 				exit();
 			}
-			if (testGrid.doddleY + 1 < 160 && testGrid.board[testGrid.doddleY + 1][testGrid.doddleX].type != Type.EMPTY){
+			if (testGrid.doddleY + 1 < 399 && testGrid.board[testGrid.doddleY + 1][testGrid.doddleX].type != Type.EMPTY){
 				testGrid.dir = direction.up;
 				if (testGrid.curstep > 0) {
 					testGrid.pivt -= testGrid.curstep;
@@ -36,12 +36,12 @@ public class Sketch extends PApplet {
 			testGrid.doddleY++;
 			testGrid.curstep--;
 			}
-		delay(60);
-//		delay(50 + (int) Math.pow(2, testGrid.curstep) / 2);
+		delay(45);
+//		delay(50 + testGrid.curstep * testGrid.curstep);
 	}
 
 	void printBoard(){
-		for (int j = testGrid.pivt; j < testGrid.pivt + 40; j++){
+		for (int j = testGrid.pivt; j < testGrid.pivt + 80; j++){
 			int mark = testGrid.pivt;
 			for (int i = 0; i < 40; i++){
 				int optic = 150;
@@ -119,13 +119,13 @@ public class Sketch extends PApplet {
 	}
 
 
-	Grid testGrid = new Grid(160, 40);
+	Grid testGrid = new Grid(400, 40);
 	public void settings() {
-		size(400, 400); // Set the size of the sketch window
+		size(400, 800); // Set the size of the sketch window
 	}
 
 	public void setup(){
-		size(400, 400);
+		size(400, 800);
 		frameRate(60);
 		noStroke();
 	}

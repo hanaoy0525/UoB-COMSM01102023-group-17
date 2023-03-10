@@ -11,24 +11,22 @@ public class Grid{
 
 		for (int j = 0; j < y; j++){
 			for (int i = 0; i < x; i++){
-				int rand = random(200);
-				if (rand <= 194) {
+				int rand = random(300);
+				if (rand <= 296) {
 					board[j][i] = new Cell(Type.EMPTY);
 					continue;
 				}else{
 					Type type;
-					if (rand <= 196){
+					if (rand <= 298){
 						type = Type.CONSTANT;
-					}else if (rand <= 198){
+					}else if (rand <= 299){
 						type = Type.ONETIME;
 					}else{
 						type = Type.FLOAT;
 					}
-					int len = random(2) + 4;
+					int len = 8;
 
-					if (type == Type.FLOAT){
-						len = 4;
-					}
+
 					for(int k = 0; k < len && i + k < 40; k++){
 						if (type != Type.FLOAT){
 							board[j][i + k] = new Cell(type);
@@ -45,9 +43,9 @@ public class Grid{
 		}
 		doddleX = x / 2;
 		doddleY = y - 10;
-		pivt = y - 40;
+		pivt = y - 80;
 		curstep = 0;
-		maxstep = 8;
+		maxstep = 25;
 		dir = direction.up;
 	}
 
