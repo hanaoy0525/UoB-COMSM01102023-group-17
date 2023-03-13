@@ -11,15 +11,15 @@ public class Grid{
 
 		for (int j = 0; j < y; j++){
 			for (int i = 0; i < x; i++){
-				int rand = random(200);
-				if (rand <= 194) {
+				int rand = random(100);
+				if (rand <= 94) {
 					board[j][i] = new Cell(Type.EMPTY);
 					continue;
 				}else{
 					Type type;
-					if (rand <= 196){
+					if (rand <= 96){
 						type = Type.CONSTANT;
-					}else if (rand <= 198){
+					}else if (rand <= 98){
 						type = Type.ONETIME;
 					}else{
 						type = Type.FLOAT;
