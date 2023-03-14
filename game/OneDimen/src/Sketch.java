@@ -1,10 +1,12 @@
 import processing.core.PApplet;
+import processing.core.PFont;
 
 import java.awt.geom.Arc2D;
 import java.util.Random;
 
 public class Sketch extends PApplet {
 
+    public boolean isGameOver;
     public Doddle doddle;
     public static int maxStep = 150;
 
@@ -116,6 +118,13 @@ public class Sketch extends PApplet {
 
     public void setup(){
         size(400, 600);
+
+        //font setting
+        PFont fontStyle;
+        fontStyle=createFont("Arial", 16, true);
+        textFont(fontStyle, 36);
+        textAlign(CENTER);
+
         boardSetUp();
         this.doddle=new Doddle(200, 450, Direction.UP);
 //        doddleX = 200;
@@ -157,26 +166,30 @@ public class Sketch extends PApplet {
 
     public void draw() {
         background(255);
-
+        if(isGameOver==true){
+            background(0,0,0);
+            fill(255, 0, 0);
+            text("Game over", 200, 300);
+            return;
+        }
         if (slide > 0){
-            slideScreen();
-            slideScreen();
-            slideScreen();
-            slideScreen();
+            for(int i=0;i<4;i++){
+                slideScreen();
+            }
             printBoard();
             doddleDraw();
             floatPlatformMove();
-            slide--;
-            slide--;
-            slide--;
-            slide--;
+            for(int i=0;i<4;i++){
+                slide--;
+            }
             if (doddle.getDir() == Direction.DOWN){
                 slide = 0;
             }
             return;
         }
         if(doddle.getDoddleY() >= 579){
-            exit();
+//            exit();
+            isGameOver=true;
         }
         printBoard();
         floatPlatformMove();
