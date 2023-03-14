@@ -8,7 +8,7 @@ public class Sketch extends PApplet {
 
     public boolean isGameOver;
     public Doddle doddle;
-    public static int maxStep = 150;
+    public static int maxStep = 200;
 
     public int slide;
 
@@ -16,17 +16,18 @@ public class Sketch extends PApplet {
 
     public int changeCur;
 
+    public int newPlatformY;
+
     @Override
     public void keyPressed(){
         if (keyCode == LEFT){
-            doddle.setDoddleX(doddle.getDoddleX()-5);
-            //doddleX -= 5;
+            doddle.setDoddleX(doddle.getDoddleX() - 5);
 
             if (doddle.getDoddleX() < 0){
                 doddle.setDoddleX(399);
             }
         }else if (keyCode == RIGHT){
-            doddle.setDoddleX(doddle.getDoddleX()+5);
+            doddle.setDoddleX(doddle.getDoddleX() + 5);
             //doddleX += 5;
             if (doddle.getDoddleX() >= 400){
                 doddle.setDoddleX(0);
@@ -38,10 +39,9 @@ public class Sketch extends PApplet {
         }
     }
 
-    public void doddleDraw(){
-        fill(0, 255, 0);
-
+    public void doddleCharacterDraw(){
         // draw the head
+        fill(0, 255, 0);
         ellipse(doddle.getDoddleX() + 11, doddle.getDoddleY() - 45, 30, 30);
 
         // draw the body
@@ -51,14 +51,18 @@ public class Sketch extends PApplet {
         rect(doddle.getDoddleX(), doddle.getDoddleY(), 8, 15);
 
         rect(doddle.getDoddleX() + 14, doddle.getDoddleY(), 8, 15);
+    }
 
+    public void doddleDraw(){
+
+        doddleCharacterDraw();
 
         if (doddle.getDir() == Direction.UP){
             doddle.setDoddleY(doddle.getDoddleY()-2);
             doddle.setStep(doddle.getStep()+2);
             //doddleY -= 2;
             //step += 2;
-            if (doddle.getStep() >= maxStep || doddle.getDoddleY() <= 75){
+            if (doddle.getStep() >= maxStep || doddle.getDoddleY() <= 300){
                 doddle.setDir(Direction.DOWN);
                 doddle.setStep(0);
 //                dir = Direction.DOWN;
@@ -77,6 +81,7 @@ public class Sketch extends PApplet {
         if (board[doddle.getDoddleY() + 15].getType() != RowType.EMPTY){
             if (doddle.getDoddleX() + 22 >= board[doddle.getDoddleY() + 15].getPlatformX()
                     && doddle.getDoddleX() <= board[doddle.getDoddleY() + 15].getPlatformX() + 80){
+                newPlatformY = doddle.getDoddleY() + 15;
                 doddle.setDir(Direction.UP);
                 if (board[doddle.getDoddleY() + 15].getType() == RowType.ONETIME){
                     board[doddle.getDoddleY() + 15].type = RowType.EMPTY;
@@ -88,6 +93,7 @@ public class Sketch extends PApplet {
         if (board[doddle.getDoddleY() + 16].getType() != RowType.EMPTY){
             if (doddle.getDoddleX() + 22 >= board[doddle.getDoddleY() + 16].getPlatformX()
                     && doddle.getDoddleX() <= board[doddle.getDoddleY() + 16].getPlatformX() + 80){
+                newPlatformY = doddle.getDoddleY() + 15;
                 doddle.setDir(Direction.UP);
                 if (board[doddle.getDoddleY() + 16].getType() == RowType.ONETIME){
                     board[doddle.getDoddleY() + 16].type = RowType.EMPTY;
@@ -99,15 +105,7 @@ public class Sketch extends PApplet {
 
     public void slideScreenControl(){
 
-        if (slide > 0){
-            return;
-        }
-
-        if (doddle.getDoddleY() <= 450){
-            slide = 450 - doddle.getDoddleY();
-        }else{
-            slide = 0;
-        }
+        slide = 550 - newPlatformY;
 
 
     }
@@ -127,12 +125,10 @@ public class Sketch extends PApplet {
 
         boardSetUp();
         this.doddle=new Doddle(200, 450, Direction.UP);
-//        doddleX = 200;
-//        doddleY = 450;
-//        dir = Direction.UP;
         slide = 0;
         changeScale = 50;
         changeCur = 0;
+        frameRate(60);
     }
 
     Row[] board = new Row[600];
@@ -166,31 +162,40 @@ public class Sketch extends PApplet {
 
     public void draw() {
         background(255);
-        if(isGameOver==true){
+
+        if (isGameOver==true){
             background(0,0,0);
             fill(255, 0, 0);
             text("Game over", 200, 300);
             return;
         }
+
+
         if (slide > 0){
-            for(int i=0;i<4;i++){
+
+            for(int i = 0 ; i < 2 ; i++){
                 slideScreen();
             }
-            printBoard();
-            doddleDraw();
-            floatPlatformMove();
-            for(int i=0;i<4;i++){
-                slide--;
+
+            for(int i = 0 ; i < 3 ; i++){
+                doddleCharacterDraw();
             }
-            if (doddle.getDir() == Direction.DOWN){
-                slide = 0;
+
+            printBoard();
+
+            floatPlatformMove();
+            for(int i = 0 ; i < 2 ; i++){
+                slide--;
             }
             return;
         }
+
+
+
         if(doddle.getDoddleY() >= 579){
-//            exit();
             isGameOver=true;
         }
+
         printBoard();
         floatPlatformMove();
         doddleDraw();
