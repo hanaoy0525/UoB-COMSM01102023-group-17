@@ -20,13 +20,13 @@ public class Sketch extends PApplet {
     @Override
     public void keyPressed(){
         if (keyCode == LEFT){
-            doddleX -= 4;
+            doddleX -= 5;
 
             if (doddleX < 0){
                 doddleX = 399;
             }
         }else if (keyCode == RIGHT){
-            doddleX += 4;
+            doddleX += 5;
             if (doddleX >= 400){
                 doddleX = 0;
             }
@@ -174,7 +174,9 @@ public class Sketch extends PApplet {
             }
             return;
         }
-
+        if(doddleY >= 579){
+            exit();
+        }
         printBoard();
         floatPlatformMove();
         doddleDraw();
