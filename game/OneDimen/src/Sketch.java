@@ -6,6 +6,7 @@ import java.util.Random;
 
 public class Sketch extends PApplet {
 
+    private int difficulty;
     public boolean isGameOver;
     public Doddle doddle;
     public static int maxStep = 200;
@@ -35,9 +36,17 @@ public class Sketch extends PApplet {
         }
 
         if (keyCode == UP){
-            slideScreen();
+            difficulty = 20;
         }
+
+//        if (keyCode == 49){
+//
+//        }
     }
+
+//    public void addDifficulty(){
+//        difficulty++;
+//    }
 
     public void doddleCharacterDraw(){
         // draw the head
@@ -71,36 +80,38 @@ public class Sketch extends PApplet {
         }
 
         if (doddle.getDir() == Direction.DOWN){
-            doddle.setDoddleY(doddle.getDoddleY()+2);
+            doddle.setDoddleY(doddle.getDoddleY()+2 + difficulty);
             //doddleY += 2;
             newPlatform();
         }
     }
 
     public void newPlatform(){
-        if (board[doddle.getDoddleY() + 15].getType() != RowType.EMPTY){
-            if (doddle.getDoddleX() + 22 >= board[doddle.getDoddleY() + 15].getPlatformX()
-                    && doddle.getDoddleX() <= board[doddle.getDoddleY() + 15].getPlatformX() + 80){
-                newPlatformY = doddle.getDoddleY() + 15;
+    for (int i = 0; i < 2 + difficulty; i++){
+        if (doddle.getDoddleY() + 15 + i < 600 && board[doddle.getDoddleY() + 15 + i].getType() != RowType.EMPTY){
+            if (doddle.getDoddleX() + 22 >= board[doddle.getDoddleY() + 15 + i].getPlatformX()
+                    && doddle.getDoddleX() <= board[doddle.getDoddleY() + 15 + i].getPlatformX() + 80){
+                newPlatformY = doddle.getDoddleY() + 15 + i;
                 doddle.setDir(Direction.UP);
-                if (board[doddle.getDoddleY() + 15].getType() == RowType.ONETIME){
-                    board[doddle.getDoddleY() + 15].type = RowType.EMPTY;
+                if (board[doddle.getDoddleY() + 15 + i].getType() == RowType.ONETIME){
+                    board[doddle.getDoddleY() + 15 + i].type = RowType.EMPTY;
                 }
                 slideScreenControl();
             }
         }
+    }
 
-        if (board[doddle.getDoddleY() + 16].getType() != RowType.EMPTY){
-            if (doddle.getDoddleX() + 22 >= board[doddle.getDoddleY() + 16].getPlatformX()
-                    && doddle.getDoddleX() <= board[doddle.getDoddleY() + 16].getPlatformX() + 80){
-                newPlatformY = doddle.getDoddleY() + 15;
-                doddle.setDir(Direction.UP);
-                if (board[doddle.getDoddleY() + 16].getType() == RowType.ONETIME){
-                    board[doddle.getDoddleY() + 16].type = RowType.EMPTY;
-                }
-                slideScreenControl();
-            }
-        }
+//        if (board[doddle.getDoddleY() + 16].getType() != RowType.EMPTY){
+//            if (doddle.getDoddleX() + 22 >= board[doddle.getDoddleY() + 16].getPlatformX()
+//                    && doddle.getDoddleX() <= board[doddle.getDoddleY() + 16].getPlatformX() + 80){
+//                newPlatformY = doddle.getDoddleY() + 15;
+//                doddle.setDir(Direction.UP);
+//                if (board[doddle.getDoddleY() + 16].getType() == RowType.ONETIME){
+//                    board[doddle.getDoddleY() + 16].type = RowType.EMPTY;
+//                }
+//                slideScreenControl();
+//            }
+//        }
     }
 
     public void slideScreenControl(){
@@ -139,13 +150,13 @@ public class Sketch extends PApplet {
         Random randx = new Random();
 
         for (int i = 0; i < 600; i++){
-            int randomNum = rand.nextInt(100);
-            if (randomNum < 95){
+            int randomNum = rand.nextInt(100 + difficulty * 50);
+            if (randomNum < 95 + difficulty * 50){
                 board[i] = new Row(RowType.EMPTY, -1);
             }else{
-                if (randomNum < 98){
+                if (randomNum < 98 + difficulty * 50){
                     board[i] = new Row(RowType.CONSTANT, randx.nextInt(319) + 40);
-                }else if (randomNum < 99){
+                }else if (randomNum < 99 + difficulty * 50){
                     board[i] = new Row(RowType.ONETIME, randx.nextInt(319) + 40);
                 }else{
                     board[i] = new Row(RowType.FLOAT, randx.nextInt(319) + 40);
@@ -162,7 +173,6 @@ public class Sketch extends PApplet {
 
     public void draw() {
         background(255);
-
         if (isGameOver==true){
             background(0,0,0);
             fill(255, 0, 0);
@@ -173,18 +183,18 @@ public class Sketch extends PApplet {
 
         if (slide > 0){
 
-            for(int i = 0 ; i < 2 ; i++){
+            for(int i = 0 ; i < 2 + difficulty ; i++){
                 slideScreen();
             }
 
-            for(int i = 0 ; i < 3 ; i++){
+            for(int i = 0 ; i < 3 + difficulty; i++){
                 doddleCharacterDraw();
             }
 
             printBoard();
 
             floatPlatformMove();
-            for(int i = 0 ; i < 2 ; i++){
+            for(int i = 0 ; i < 2 + difficulty ; i++){
                 slide--;
             }
             return;
@@ -248,9 +258,9 @@ public class Sketch extends PApplet {
             board[0] = new Row(RowType.EMPTY, -1);
         }else{
             int rand = ((int) (Math.random() * 100));
-            if (rand < 80){
+            if (rand < 80 + difficulty){
                 board[0] = new Row(RowType.CONSTANT, (int) (Math.random() * 400));
-            }else if (rand < 95){
+            }else if (rand < 95 + difficulty){
                 board[0] = new Row(RowType.ONETIME, (int) (Math.random() * 400));
             }else{
                 board[0] = new Row(RowType.FLOAT, (int) (Math.random() * 400));
