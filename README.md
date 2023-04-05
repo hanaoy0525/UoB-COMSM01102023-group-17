@@ -21,7 +21,9 @@ The appeal of the game comes from its simplicity. There are only two inputs, lef
 As a team we decided we should make a casual game that would appeal to a mass audience. The bigarea of inspiration we looked to were mobile games. We devised a list of games we had all played at one point with an emphasis on listing games of different genres. This list included strategy games such as Bloons Tower Defence, endless runners such as Temple Run, platformers such as Jetpack Joyride, co-op games such as Fireboy and Watergirl and puzzle games such as Angry Birds. When narrowing down what game we should make we thought about our target demographic. We decide to come up with some user stories for a mass gamer audience:
 
 “As a casual gamer I want a simple and fun experience”.
+
 “As a regular gamer I want a challenge to overcome”.
+
 “As an avid gamer I want to prove I am the best”.
 
 Looking at the casual gamer audience we decided it would be a bad idea to make a strategy game with complicated mechanics. Though it may appeal to more dedicated gamers, a casual might be put off by having to dedicate a large amount of time to learning the game. A casual would be drawn to something with more instant gratification. We also ruled out the idea of a co-op game. This was because it would be less accessible to people if a second person was required to be able to play the game. 
