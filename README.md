@@ -8,6 +8,8 @@
 | Haoyan Wang |
 | Yinyue Zhang |
 
+## Group Photo
+
 ![alt text](https://github.com/UoB-COMSM0110/2023-group-17/blob/main/GroupPicture.jpeg?raw=true)
 
 # Project Report 
@@ -26,11 +28,11 @@ As a team we decided we should make a casual game that would appeal to a mass au
 
 | Game  | Genre |
 | ------------- | ------------- |
-| Bloons Tower Defense  | strategy  |
-| Temple Run  | endless runner  |
-| Jetpack Joyride | platformer |
-| Fireboy and Watergirl | co-op |
-| Candy Crush | puzzle | 
+| Bloons Tower Defense  | Strategy  |
+| Temple Run  | Endless Runner  |
+| Jetpack Joyride | Platformer |
+| Fireboy and Watergirl | Co-op |
+| Candy Crush | Puzzle | 
 
 When narrowing down what game we should make we thought about our target demographic. We decide to come up with some user stories for a mass gamer audience:
 
@@ -48,13 +50,13 @@ We decided to take inspiration from Doodle Jump specifically. This was because w
 
 We developed a case diagram for this proposed game:
 
-![alt text] (https://github.com/UoB-COMSM0110/2023-group-17/blob/main/Documents/Diagrams/Software%20Engineering%20Game%20Use%20Case%20Diagram.png)
+![alt text](https://github.com/UoB-COMSM0110/2023-group-17/blob/main/Documents/Diagrams/Software%20Engineering%20Game%20Use%20Case%20Diagram.png)
 
 The diagram emphasized the simple user interaction that we were aiming for. One button to start playing, then another to play again when there is a game over. It also includes a very simple settings menu. This additional difficulty option was also included for avid gamers looking for even more of a challenge. 
 
 When deciding on a special gimmick for our version of Doodle Jump we looked at any issues we found in the original game. One problem was the option for player to be idle by bouncing on the same platform continuously. Though this meant the score would not increase we thought there was no real incentive for the player to keep moving at a faster pace. We decided to implement an object that would follow the player from below them, always forcing the player to move at a brisk pace and not staying at one spot for too long. This would also be good for a difficulty option as this object can be sped up or slowed down according to the player’s needs.
 
-As a team we made a [paper prototype] (https://raw.githubusercontent.com/UoB-COMSM0110/2023-group-17/main/PaperPrototype.mp4) to test out our game. This further solidified our game choice as we had a lot of fun playing our game. We showed our prototype to members of other groups and got positive feedback from our simple premise and fun game design.
+As a team we made a [paper prototype](https://raw.githubusercontent.com/UoB-COMSM0110/2023-group-17/main/PaperPrototype.mp4) to test out our game. This further solidified our game choice as we had a lot of fun playing our game. We showed our prototype to members of other groups and got positive feedback from our simple premise and fun game design.
 
 ## Design
 
