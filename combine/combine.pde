@@ -44,11 +44,14 @@ PFont startFont;
 int colorChange = 1;
 int textColor = 0;
 boolean showSettings = false;
-
+import processing.sound.*;
+SoundFile sound;
 
 void setup() {
   size(400, 400);
   //背景大小
+  sound = new SoundFile(this, "music1.mp3");
+  sound.loop();
   background(255);
   img = loadImage("setting_background.png");
   img.resize(400, 400);
