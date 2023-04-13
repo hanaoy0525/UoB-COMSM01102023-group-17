@@ -36,10 +36,22 @@ int lineX2; // 横线的结束x坐标
 int dotSize;
 float levelTextX;
 
+PImage backgroundImg; 
+//PImage logoImg; // Logo 
+PImage characterImg; 
+PImage character2Img;
+PFont startFont;
+int colorChange = 1;
+int textColor = 0;
+boolean showSettings = false;
+import processing.sound.*;
+SoundFile sound;
 
 void setup() {
   size(400, 400);
   //背景大小
+  sound = new SoundFile(this, "music1.mp3");
+  sound.loop();
   background(255);
   img = loadImage("setting_background.png");
   img.resize(400, 400);
@@ -92,10 +104,60 @@ void setup() {
   backImg.resize(backWidth, backWidth);
   backBtnX = 10;
   backBtnY = 10;
+  
+    backgroundImg = loadImage("BackgroundCloud.jpg");
+ // logoImg = loadImage("/Users/haoyanwang/Documents/Processing/data/platform.png");
+  characterImg = loadImage("kisspng-doodle-jump.png");
+  character2Img = loadImage("black.png");
+  settingsImg = loadImage("settings.png");
+  startFont = createFont("DripOctober-vm0JA.ttf",128);
+  textFont(startFont,32);
+}
+
+void draw() {
+  if (!showSettings) {
+    displayStart();
+  } else {
+    displaySettings();
+  }
 }
 
 
-void draw() {
+void displayStart() {
+  background(255);
+  
+  // draw the background
+  image(backgroundImg, 0, 0, width, height);
+  
+  
+  // the character, we might need to change this
+  //image(characterImg, width - characterImg.width/, height/20);
+  image(characterImg, 20, 100, characterImg.width/10, characterImg.height/10);
+  image(character2Img, 330, 170, characterImg.width/20, characterImg.height/20);
+  
+  // start button
+  fill(255);
+  rect(width/2 - 75, height/2 - 30, 150, 60, 10);
+  textAlign(CENTER, CENTER);
+  textSize(32);
+  fill(0);
+  text("Start", width/2, height/2);
+  //game name
+  textSize(40);
+  textColor += colorChange;
+  if (textColor > 255 || textColor < 0) {
+    colorChange = -colorChange;  
+  }
+  fill(textColor, textColor, 0); 
+  //fill(random(255), random(255), random(255));
+  text("Doodle", 200, 70);
+  text("Jump", 200, 130);
+  
+  // seeting button
+  image(settingsImg, width - 80, height - 80, 70, 70);
+}
+
+void displaySettings() {
   background(255);
   
   //显示星空
@@ -186,6 +248,21 @@ void draw() {
 
 }
 
+void mouseClicked() {
+  // click start go into the game
+  if (mouseX > width/2 - 75 && mouseX < width/2 + 75 && mouseY > height/2 - 30 && mouseY < height/2 + 30) {
+    // the game content
+    println("mouse is on the button1");
+  }
+  
+  // click settings go into setting
+  if (!showSettings && mouseX > width - 80 && mouseX < width - 10 && mouseY > height - 80 && mouseY < height - 10) {
+    // code for seetings
+    showSettings = true;
+    println("mouse is on the button2");
+  }
+}
+
 void mousePressed() {
   // 判断鼠标是否在BGM音量滑块上按下
   if (mouseX > sliderXbgm && mouseX < sliderXbgm + sliderWidth &&
@@ -206,6 +283,7 @@ void mousePressed() {
   if (mouseX > cancelBtnX && mouseX < cancelBtnX + btnWidth &&
       mouseY > cancelBtnY && mouseY < cancelBtnY + btnHeight) {
     // 在这里执行点击 Cancel 按钮后的逻辑
+    showSettings = false;
     println("Cancel button clicked");
   }
   
