@@ -5,25 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="57f9413b-600a-4888-a7b4-57c71a4abcbd" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../../BounceMan/BounceMan/11.03/BounceMan.pde" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../BounceMan/BounceMan/BounceMan.pde" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../BounceMan/BounceMan/Platform.pde" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../BounceMan/BounceMan/Player.pde" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../HCI evaluation (1).jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../HCI evaluation (2).jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../NASA TLX (1).jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../NASA TLX (2).jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../Soundeffects/Readme.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../Soundeffects/bounce.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../Soundeffects/dead.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../Soundeffects/music1.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../setting/plaid.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../setting/setting.pde" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Documents/Diagrams/Software Engineering Game Class Diagram.png" beforeDir="false" afterPath="$PROJECT_DIR$/../../Documents/Diagrams/Software Engineering Game Class Diagram.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Documents/Diagrams/Software Engineering Game Sequence Diagram.png" beforeDir="false" afterPath="$PROJECT_DIR$/../../Documents/Diagrams/Software Engineering Game Sequence Diagram.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OneDimen/Sketch.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OneDimen/Sketch.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Sketch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sketch.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -107,16 +89,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Sketch.java</url>
-          <line>95</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

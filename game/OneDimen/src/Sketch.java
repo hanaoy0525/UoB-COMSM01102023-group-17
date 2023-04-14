@@ -41,9 +41,9 @@ public class Sketch extends PApplet {
             difficulty = 20;
         }
 
-//        if (keyCode == 49){
-//
-//        }
+        if (keyCode == DOWN){
+            difficulty=0;
+        }
     }
 
 //    public void addDifficulty(){
