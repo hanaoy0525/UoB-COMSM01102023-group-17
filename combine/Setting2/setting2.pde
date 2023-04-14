@@ -1,3 +1,5 @@
+
+class SettingPage{
 StarrySky stars;
 BouncingImage bouncingImage;
 float sliderWidth, sliderHeight;
@@ -39,7 +41,7 @@ int dotSize;
 float levelTextX;
 
 
-void setup() {
+ SettingPage() {
   size(400, 400);
   //背景大小
   background(255);
@@ -98,11 +100,11 @@ void setup() {
 }
 
 
-void draw() {
+void display() {
   background(255);
   
   //显示星空
-   stars.update(); // 更新星空
+  stars.update(); // 更新星空
   stars.display(); // 显示星空
   image(backGroundImg, 0, 0);
   bouncingImage.update(); // 更新和显示 BouncingImage 对象
@@ -186,92 +188,5 @@ void draw() {
   
   //绘制back按钮
   image(backImg, backBtnX, backBtnY, backWidth,backWidth);
-  
-
-}
-
-void mousePressed() {
-  // 判断鼠标是否在BGM音量滑块上按下
-  if (mouseX > sliderXbgm && mouseX < sliderXbgm + sliderWidth &&
-      mouseY > sliderYbgm && mouseY < sliderYbgm + sliderHeight) {
-    // 更新音量值
-    sliderValueBgm = mouseX - sliderXbgm;
-    volumeBgm = map(sliderValueBgm, 0, sliderWidth, 0, 1);
-  }
-    // 判断鼠标是否在Action音量滑块上按下
-  if (mouseX > sliderXaction && mouseX < sliderXaction + sliderWidth &&
-      mouseY > sliderYaction && mouseY < sliderYaction + sliderHeight) {
-    // 更新音量值
-    sliderValueAction = mouseX - sliderXaction;
-    volumeAction = map(sliderValueAction, 0, sliderWidth, 0, 1);
-  }
-  
-  // 判断鼠标是否点击了 Cancel 按钮
-  if (mouseX > cancelBtnX && mouseX < cancelBtnX + btnWidth &&
-      mouseY > cancelBtnY && mouseY < cancelBtnY + btnHeight) {
-    // 在这里执行点击 Cancel 按钮后的逻辑
-    println("Cancel button clicked");
-  }
-  
-  // 判断鼠标是否点击了 Confirm 按钮
-  if (mouseX > confirmBtnX && mouseX < confirmBtnX + btnWidth &&
-      mouseY > confirmBtnY && mouseY < confirmBtnY + btnHeight) {
-    // 在这里执行点击 Confirm 按钮后的逻辑
-    println("Confirm button clicked");
-  }
-  
-  // 检测鼠标点击level
-  if (mouseY >= lineY - dotSize / 2 && mouseY <= lineY + dotSize / 2 && mouseX >= lineX1 && mouseX <= lineX2) {
-    // 判断鼠标点击位置是否在难度级别横线上
-    float interval = (lineX2 - lineX1) / (difficultyLevels.length - 1); // 计算每个难度级别之间的间隔
-    currentDifficulty = round((mouseX - lineX1) / interval); // 根据鼠标点击位置计算当前选中的难度级别索引
-  }
-  
-}
-
-void mouseDragged() {
-  // 判断鼠标是否在滑块上拖动
-  if (mouseX > sliderXbgm && mouseX < sliderXbgm+sliderWidth &&
-      mouseY > sliderYbgm && mouseY < sliderYbgm+sliderHeight) {
-    // 更新音量值
-    sliderValueBgm = mouseX - sliderXbgm;
-    volumeBgm = map(sliderValueBgm, 0, sliderWidth, 0, 1);
-  }
-    if (mouseX > sliderXaction && mouseX < sliderXaction + sliderWidth &&
-      mouseY > sliderYaction && mouseY < sliderYaction + sliderHeight) {
-    // 更新音量值
-    sliderValueAction = mouseX - sliderXbgm;
-    volumeAction = map(sliderValueAction, 0, sliderWidth, 0, 1);
-  }
-  
-}
-
-void mouseMoved() {
-  // 判断鼠标是否悬停在 Cancel 按钮上
-  cancelBtnColor = buttonHover(cancelBtnX, cancelBtnY, btnWidth, btnHeight, btnHoverColor, color(255));
-  
-  // 判断鼠标是否悬停在 Confirm 按钮上
-  confirmBtnColor = buttonHover(confirmBtnX, confirmBtnY, btnWidth, btnHeight, btnHoverColor, color(255));
-  //判断鼠标是否悬停在back箭头上
-  if (mouseX > backBtnX && mouseX < backBtnX + backWidth &&
-      mouseY > backBtnY && mouseY < backBtnY + backWidth) {
-    println("mouse is on the back button");
-    backWidth = 50;
-    //image(backImg, backBtnX-5, backBtnY-5, backWidth + 20, backWidth + 20);
-  }else{
-    backWidth = 40;
-  }
-  
-}
-
-  
-color buttonHover(float btnX, float btnY, float btnWidth, float btnHeight, color hoverColor, color defaultColor) {
-  // 判断鼠标是否悬停在按钮上
-  if (mouseX > btnX && mouseX < btnX + btnWidth &&
-      mouseY > btnY && mouseY < btnY + btnHeight) {
-    println("mouse is on the button");
-    return hoverColor;
-  } else {
-    return defaultColor;
-  }
 } //<>//
+}

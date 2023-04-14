@@ -1,4 +1,5 @@
 int gameScreen = 0;
+StarrySky stars;
 
 ArrayList<Platform> platforms;
 Player player;
@@ -9,9 +10,10 @@ PImage bg0;
 PImage bg1;
 PImage bg2;
 
+GuideScreen gs;
 void setup(){
   size(500, 800);
-  
+  stars = new StarrySky(100);
   bg0 = loadImage("bg0.jpg");
   
   player = new Player (width/2, height * 0.80);
@@ -24,6 +26,8 @@ void setup(){
   platformTotal = platforms.size() - 1;
   p = platformTotal;
   
+  //guidescreen
+  gs = new GuideScreen();
 }
 
 void draw(){
@@ -40,25 +44,37 @@ void draw(){
     gameOverScreen();
   }
   
+  if(gameScreen == 3){
+    guideScreen();
+  }
+  
+  
 }
 
 void initScreen() {
-  
-  background(bg0);
+  stars.update(); 
+  stars.display(); 
+  //background(bg0);
 
   textSize(50);
   text("Bounce MAN", 10, 400);
   textSize(30);
   text("click to start", 10, 600);
-  if(mousePressed){
-    gameScreen = 1;
-  }
+  //if(mousePressed){
+  //  gameScreen = 1;
+  //}
+  //guide
+  text("guide", 10, 700);
+  //if(mousePressed){
+  //  gameScreen = 3;
+  //}
   
 }
 
 void gameScreen() {
   
-  background(0);
+  stars.update(); // 更新星空
+  stars.display(); // 显示星空
   
   player.display();
   player.move();
@@ -101,6 +117,43 @@ void gameOverScreen() {
   if(keyPressed){
     setup();
     gameScreen = 0;
-  }
-  
+ }
 }
+ 
+ void guideScreen() {
+    gs.display();
+ }
+ 
+ void mouseMoved() {
+  //check mouse on the back arrow
+  if (mouseX > gs.backBtnX && mouseX < gs.backBtnX + gs.backWidth &&
+      mouseY > gs.backBtnY && mouseY < gs.backBtnY + gs.backWidth) {
+    println("mouse is on the back arrow");
+    gs.backWidth = 60;
+  }else{
+    gs.backWidth = 50;
+  }
+ }
+void mousePressed() {
+  //star page
+  if(gameScreen == 0){
+    if(mouseY >570 && mouseY < 600){
+      gameScreen = 1;
+      setup();
+    }
+    if(mouseY >670 && mouseY < 700){
+      gameScreen = 3;
+      setup();
+    }
+  }
+  //guide page
+  // check press on the back arrow
+  if(gameScreen == 3){
+     if (mouseX > gs.backBtnX && mouseX < gs.backBtnX + gs.backWidth &&
+        mouseY > gs.backBtnY && mouseY < gs.backBtnY + gs.backWidth){
+      gameScreen = 0;
+      setup();     
+    }
+  }
+    
+  }
