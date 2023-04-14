@@ -3,13 +3,17 @@ class Player {
   float y;
   float v;
   
+  PImage man;
+  
   Player (float x, float y){
     this.x = x;
     this.y = y;
     v = -15;
+    man = loadImage("man.png");
   }
   
   void display(){
+    g.image(man, x, y);
     fill(255);
     rectMode(CENTER);
     rect(x, y, 50, 50);
