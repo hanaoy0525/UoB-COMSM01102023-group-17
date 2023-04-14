@@ -78,7 +78,7 @@ void gameScreen() {
   }
   
   if (platforms.get(p).y > height) {
-    platforms.set(p,(new Platform(random(40, width-40), height/platformTotal)));
+    platforms.set(p,(new Platform(random(40, width-40), 50)));
     p--;
     if (p < 0) {
       this.p = platformTotal;  
