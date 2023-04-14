@@ -135,7 +135,7 @@ void gameOverScreen() {
   }
  }
 void mousePressed() {
-  //star page
+  //start page
   if(gameScreen == 0){
     if(mouseY >570 && mouseY < 600){
       gameScreen = 1;
