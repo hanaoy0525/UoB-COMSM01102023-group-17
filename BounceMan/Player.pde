@@ -13,10 +13,10 @@ class Player {
   }
   
   void display(){
-    g.image(man, x, y);
-    fill(255);
-    rectMode(CENTER);
-    rect(x, y, 50, 50);
+    g.image(man, x - 25, y - 25);
+    //fill(255);
+    //rectMode(CENTER);
+    //rect(x, y, 50, 50);
   }
   
   void move(){
