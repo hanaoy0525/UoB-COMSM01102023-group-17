@@ -14,7 +14,6 @@ GuideScreen gs;
 void setup(){
   size(500, 800);
   stars = new StarrySky(100);
-  bg0 = loadImage("bg0.jpg");
   
   player = new Player (width/2, height * 0.80);
   
