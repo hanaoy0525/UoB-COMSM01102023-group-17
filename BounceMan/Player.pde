@@ -12,11 +12,13 @@ class Player {
     this.x = x;
     this.y = y;
     v = -15;
-    man = loadImage("man.png");
+    man = loadImage("setting_background_char.png");
   }
   
   void display(){
-    g.image(man, x - 25, y - 25);
+    imageMode(CORNER);
+    image(man, x - 25, y - 25);
+    man.resize(60,50);
     //fill(255);
     //rectMode(CENTER);
     //rect(x, y, 50, 50);

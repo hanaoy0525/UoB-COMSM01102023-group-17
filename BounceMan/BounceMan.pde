@@ -18,7 +18,6 @@ void setup(){
   background.loop();
   size(500, 800);
   stars = new StarrySky(100);
-  bg0 = loadImage("bg0.jpg");
   
   player = new Player (width/2, height * 0.80);
   
@@ -120,7 +119,8 @@ void gameOverScreen() {
   textSize(30);
   text("space: return to start screen", 10, 600);
   if(keyPressed){
-    setup();
+    initScreen();
+    //setup();
     gameScreen = 0;
  }
 }
@@ -140,7 +140,7 @@ void gameOverScreen() {
   }
  }
 void mousePressed() {
-  //star page
+  //start page
   if(gameScreen == 0){
     if(mouseY >570 && mouseY < 600){
       gameScreen = 1;

@@ -33,6 +33,12 @@ class GuideScreen{
     textFont(createFont("Comic Sans MS", 40, true)); 
     text("Guide", width/2 - 50, 50);
     
+    textSize(25);
+    text("Bounce on the platforms to climb higher!", 10, 200);
+    
+    textSize(25);
+    text("Use the arrow keys to move!", 10, 400);
+    
    //back arrow
    image(backArrowImg, backBtnX, backBtnY, backWidth,backWidth);
    fill(255);

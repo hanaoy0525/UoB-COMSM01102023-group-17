@@ -9,7 +9,7 @@ class JumpMan {
   JumpMan (String imagePath, float x, float y, float groundHeight) {
     img = loadImage(imagePath); // 加载图片
     imgWidth = 60; // 图片宽度设定为90像素
-    imgHeight = 60; // 图片高度设定为90像素
+    imgHeight = 50; // 图片高度设定为90像素
     img.resize(imgWidth, imgHeight); // 缩小图片尺寸
     this.x = x;
     this.y = y;
@@ -20,6 +20,7 @@ class JumpMan {
   }
 
   void display() {
+    imageMode(CORNER);
     image(img, x, y); // 显示图片
   }
 
