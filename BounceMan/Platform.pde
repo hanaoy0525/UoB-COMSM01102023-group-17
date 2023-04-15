@@ -1,22 +1,35 @@
+enum PlatformType{
+  NORMAL_TYPE,
+  FRAGILE_TYPE,
+  FLOAT_TYPE
+}
+
+enum Direction{
+  LEFT,
+  RIGHT
+}
+
 class Platform {
-  float x;
-  float y;
-  float v;
-  PImage platformImage;
+  public float x;
+  public float y;
+  public float v;
+  public PImage platformImage;
+  public PlatformType platformType;
+  
+  Direction dir;
+  boolean hasContacted;
   
   Platform (float x, float y){
     this.x = x;
     this.y = y;
-    int random = (int)random(3);
-    if(random == 0){
-      platformImage = loadImage("single_platform1.png");
-    }else if(random == 1){
-      platformImage = loadImage("single_platform2.png");
-    }else{
-      platformImage = loadImage("single_platform3.png");
-    }
+
+    platformImage = loadImage("single_platform1.png");
     
     platformImage.resize(80,20);
+    
+    hasContacted=false;
+    
+    platformType=PlatformType.NORMAL_TYPE;
   }
   
   void display(){
@@ -35,4 +48,50 @@ class Platform {
     y -= v;
   }
   
+  public void setContacted(){
+    this.hasContacted=true;
+  }
+  
+  public boolean hasContactedBefore(){
+    return this.hasContacted;
+  }
+ 
+  public void changeDir(){
+    if (dir == Direction.LEFT){
+        dir = Direction.RIGHT;
+    }else{
+        dir = Direction.LEFT;
+    }
+  }
+
+  public void floatMove(){
+    if (dir == Direction.LEFT){
+        x-=2;
+    }else{
+        x+=2;
+    }
+  }
+}
+
+class FragilePlatform extends Platform{
+  public FragilePlatform(float x, float y){
+    super(x, y);
+    platformImage = loadImage("single_platform2.png");
+    platformImage.resize(80,20);
+    platformType = PlatformType.FRAGILE_TYPE;
+  }
+}
+
+class FloatPlatform extends Platform{
+  public FloatPlatform(float x, float y){
+    super(x, y);
+    platformImage = loadImage("single_platform3.png");
+    platformImage.resize(80,20);
+    platformType = PlatformType.FLOAT_TYPE;
+    if (Math.random() < 0.5){
+        dir = Direction.LEFT;
+    }else{
+        dir = Direction.RIGHT;
+    }
+  }
 }

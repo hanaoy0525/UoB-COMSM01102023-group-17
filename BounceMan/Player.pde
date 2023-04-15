@@ -1,5 +1,5 @@
-import processing.sound.*;
-SoundFile bounce;
+//import processing.sound.*;
+//SoundFile bounce;
 
 class Player {
   float x;
@@ -40,8 +40,8 @@ class Player {
   }
   
   void bounce(){
-    bounce = new SoundFile(BounceMan.this, "bounce.wav");
-    bounce.play();
+    //bounce = new SoundFile(BounceMan.this, "bounce.wav");
+    //bounce.play();
      v = -15;
   } 
   
@@ -50,12 +50,14 @@ class Player {
     v += 0.5;
   }
   
-  void isContact(Platform platform) {
+  boolean isContact(Platform platform) {
     if (x < platform.x + 80 && x + 50 > platform.x && y < platform.y + 20 && 55 + y > platform.y) {
       if (v > 0) {
         bounce();
+        return true;
       }
     }
+    return false;
   }
   
 }
