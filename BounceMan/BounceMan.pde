@@ -1,6 +1,5 @@
 int gameScreen = 0;
 StarrySky stars;
-
 ArrayList<Platform> platforms;
 Player player;
 int p;
@@ -10,8 +9,13 @@ PImage bg0;
 PImage bg1;
 PImage bg2;
 
+import processing.sound.*;
+SoundFile background;
+
 GuideScreen gs;
 void setup(){
+  background = new SoundFile(this, "music1.mp3");
+  background.loop();
   size(500, 800);
   stars = new StarrySky(100);
   bg0 = loadImage("bg0.jpg");
@@ -52,6 +56,7 @@ void draw(){
 }
 
 void initScreen() {
+
   stars.update(); 
   stars.display(); 
   //background(bg0);
@@ -139,11 +144,13 @@ void mousePressed() {
   if(gameScreen == 0){
     if(mouseY >570 && mouseY < 600){
       gameScreen = 1;
-      setup();
+     // setup();
+     gameScreen();
     }
     if(mouseY >670 && mouseY < 700){
       gameScreen = 3;
-      setup();
+      //setup();
+      guideScreen();
     }
   }
   //guide page
@@ -152,7 +159,8 @@ void mousePressed() {
      if (mouseX > gs.backBtnX && mouseX < gs.backBtnX + gs.backWidth &&
         mouseY > gs.backBtnY && mouseY < gs.backBtnY + gs.backWidth){
       gameScreen = 0;
-      setup();     
+     // setup();  
+     initScreen();
     }
   }
     

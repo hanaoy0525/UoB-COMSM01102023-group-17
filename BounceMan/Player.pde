@@ -1,3 +1,6 @@
+import processing.sound.*;
+SoundFile bounce;
+
 class Player {
   float x;
   float y;
@@ -35,6 +38,8 @@ class Player {
   }
   
   void bounce(){
+    bounce = new SoundFile(BounceMan.this, "bounce.wav");
+    bounce.play();
      v = -15;
   } 
   
