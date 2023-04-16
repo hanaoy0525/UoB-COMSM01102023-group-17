@@ -83,6 +83,7 @@ class FragilePlatform extends Platform{
 }
 
 class FloatPlatform extends Platform{
+  Direction dir;
   public FloatPlatform(float x, float y){
     super(x, y);
     platformImage = loadImage("single_platform3.png");
@@ -92,6 +93,22 @@ class FloatPlatform extends Platform{
         dir = Direction.LEFT;
     }else{
         dir = Direction.RIGHT;
+    }
+  }
+  
+  public void changeDir(){
+    if (dir == Direction.LEFT){
+        dir = Direction.RIGHT;
+    }else{
+        dir = Direction.LEFT;
+    }
+  }
+
+  public void floatMove(){
+    if (dir == Direction.LEFT){
+        x-=2;
+    }else{
+        x+=2;
     }
   }
 }

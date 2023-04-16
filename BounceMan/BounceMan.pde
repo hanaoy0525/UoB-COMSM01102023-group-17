@@ -118,12 +118,13 @@ void gameScreen() {
   if(deletedPlatformIndex!=-1){
     platforms.remove(deletedPlatformIndex);
     deletedPlatformIndex=-1;
+    platforms.add(generatePlatform(0));
   }
   
   //generate new platform at the top of the screen
   for(int i=0; i<platforms.size();i++){
     if (platforms.get(i).y > height) {
-      platforms.set(i,generatePlatform(1));
+      platforms.set(i,generatePlatform(0));
     }
   }
   floatPlatformMove();
@@ -208,7 +209,9 @@ Platform generatePlatform(int heightIndex){
 void floatPlatformMove() {
   for(Platform platform: platforms){
     if(platform.platformType==PlatformType.FLOAT_TYPE){
-      platform.floatMove();
+      FloatPlatform f=(FloatPlatform)platform;
+      //platform.floatMove();
+      f.floatMove();
     }
   }
     changeCur++;
@@ -221,7 +224,9 @@ void floatPlatformMove() {
 void changeDirection(){
   for(Platform platform: platforms){
     if(platform.platformType==PlatformType.FLOAT_TYPE){
-      platform.changeDir();
+      FloatPlatform f=(FloatPlatform)platform;
+      //platform.changeDir();
+      f.changeDir();
     }
   }
 
