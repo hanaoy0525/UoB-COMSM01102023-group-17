@@ -1,5 +1,5 @@
-//import processing.sound.*;
-//SoundFile background;
+import processing.sound.*;
+SoundFile background;
 import java.util.Random;
 
 Screen currentScreen = Screen.Init;
@@ -18,8 +18,8 @@ int score;
 GuideScreen gs;
 
 void setup(){
-  //background = new SoundFile(this, "music1.mp3");
-  //background.loop();
+  background = new SoundFile(this, "music1.mp3");
+  background.loop();
   size(500, 800);
   stars = new StarrySky(100);
   
@@ -28,7 +28,7 @@ void setup(){
   platforms = new ArrayList<Platform>();
 
   //generating platform initially
-  for (int i = 1; i < 15; i++) {
+  for (int i = 1; i < 12; i++) {
     platforms.add(generatePlatform(i));
   }
   
@@ -209,13 +209,13 @@ Platform generatePlatform(int heightIndex){
     int randomNum = rand.nextInt(100);
     
     if(randomNum < 80){
-      return new Platform(random(40, width - 40), heightIndex * 50);
+      return new Platform(random(40, width - 40), heightIndex * 65);
     }
     else if(80 <= randomNum && randomNum < 90){
-      return new FragilePlatform(random(40, width - 40), heightIndex * 50);
+      return new FragilePlatform(random(40, width - 40), heightIndex * 65);
     }
     else{
-      return new FloatPlatform(random(40, width - 40), heightIndex * 50);
+      return new FloatPlatform(random(40, width - 40), heightIndex * 65);
     }
 }
 
