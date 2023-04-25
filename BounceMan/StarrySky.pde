@@ -1,11 +1,10 @@
-// 星空类
+// Background
 class StarrySky {
-  int numStars; // 星星数量
-  float[] starX; // 星星的 x 坐标
-  float[] starY; // 星星的 y 坐标
-  color[] starColors; // 星星的颜色
+  int numStars; 
+  float[] starX; 
+  float[] starY; 
+  color[] starColors; 
 
-  // 构造函数
   StarrySky(int numStars) {
     this.numStars = numStars;
     starX = new float[numStars];
@@ -17,8 +16,7 @@ class StarrySky {
       starColors[i] = color(random(255), random(255), random(255));
     }
   }
-
-  // 显示星空
+  
   void display() {
     background(0);
     for (int i = 0; i < numStars; i++) {
@@ -28,10 +26,10 @@ class StarrySky {
     }
   }
 
-  // 更新星空
+  // star will move to right one pixel per frame
   void update() {
     for (int i = 0; i < numStars; i++) {
-      starX[i] += 1; // 星星向右移动
+      starX[i] += 1; 
       if (starX[i] > width) {
         starX[i] = 0;
         starY[i] = random(height);

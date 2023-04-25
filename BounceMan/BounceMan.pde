@@ -1,4 +1,8 @@
-int gameScreen = 0;
+//import processing.sound.*;
+//SoundFile background;
+import java.util.Random;
+
+Screen currentScreen = Screen.Init;
 StarrySky stars;
 ArrayList<Platform> platforms;
 Player player;
@@ -9,14 +13,10 @@ PImage bg2;
 
 int changeCur;
 int changeScale;
-
 int score;
 
-//import processing.sound.*;
-//SoundFile background;
-import java.util.Random;
-
 GuideScreen gs;
+
 void setup(){
   //background = new SoundFile(this, "music1.mp3");
   //background.loop();
@@ -43,19 +43,19 @@ void setup(){
 
 void draw(){
   
-  if (gameScreen == 0) {
+  if (currentScreen == Screen.Init) {
     initScreen();
   }
    
-  if (gameScreen == 1) {
+  if (currentScreen == Screen.Play) {
     gameScreen();
   }
   
-  if (gameScreen == 2) {
+  if (currentScreen == Screen.Over) {
     gameOverScreen();
   }
   
-  if(gameScreen == 3){
+  if(currentScreen == Screen.Guide){
     guideScreen();
   }
   
@@ -72,32 +72,35 @@ void initScreen() {
   text("Bounce MAN", 10, 400);
   textSize(30);
   text("click to start", 10, 600);
+  /*
   if(mousePressed){
-    gameScreen = 1;
+    currentScreen = Screen.Play;
   }
+  */
   //guide
   text("guide", 10, 700);
+  /*
   if(mousePressed){
-    gameScreen = 3;
+    currentScreen = Screen.Guide;
   }
-  
+  */
 }
 
 void gameScreen() {
-  
-  stars.update(); // 更新星空
-  stars.display(); // 显示星空
+
+  stars.update(); // update background
+  stars.display(); // display background
   
   text("score: "+score, 380, 20);
   player.display();
   player.move();
   player.update();
  
-  while (player.y < height/2) {
+  while (player.yCoordinate < height/2) {
       for (Platform platform : platforms) {
-        platform.setV(player.v);
+        platform.setV(player.velocity);
       }
-    player.y = height/2;
+    player.yCoordinate = height/2;
   }
   int deletedPlatformIndex=-1;
   for (int i=0;i < platforms.size();i++) {
@@ -128,8 +131,9 @@ void gameScreen() {
     }
   }
   floatPlatformMove();
-  if (player.y > height) {
-    gameScreen = 2;
+  if (player.yCoordinate > height) {
+    setup();
+    currentScreen = Screen.Over;
   }
   
 }
@@ -140,57 +144,66 @@ void gameOverScreen() {
   textSize(100);
   text("GAME OVER", 10, 400);
   textSize(30);
-  text("space: return to start screen", 10, 600);
+  text("Press any key to return", 10, 600);
   if(keyPressed){
+    currentScreen = Screen.Init;
     initScreen();
-    gameScreen = 0;
+    
  }
 }
  
- void guideScreen() {
+ void guideScreen() { 
    /*
      todo: there is some problem with switching back to init page from guidepage
    */
     gs.display();
  }
- 
+ /*
  void mouseMoved() {
   //check mouse on the back arrow
-  if (mouseX > gs.backBtnX && mouseX < gs.backBtnX + gs.backWidth &&
-      mouseY > gs.backBtnY && mouseY < gs.backBtnY + gs.backWidth) {
+  if (mouseX > gs.backButtonX && mouseX < gs.backButtonX + gs.buttonWidth &&
+      mouseY > gs.backButtonY && mouseY < gs.backButtonY + gs.buttonWidth) {
     println("mouse is on the back arrow");
-    gs.backWidth = 60;
+    gs.buttonWidth = 60;
   }else{
-    gs.backWidth = 50;
+    gs.buttonWidth = 50;
   }
  }
-void mousePressed() {
-    
+ */
+ 
+void mouseClicked() {
   //start page
-  if(gameScreen == 0){
-    if(mouseY >570 && mouseY < 600){
-      gameScreen = 1;
-      setup();
-     gameScreen();
+  if(currentScreen == Screen.Init){
+    if(mouseY > 570 && mouseY < 600 && mouseX >= 0 && mouseX <= 180){
+      currentScreen = Screen.Play;
+      return;
+ //     setup();
+//     gameScreen();
     }
-    if(mouseY >670 && mouseY < 700){
-      gameScreen = 3;
+    if(mouseY > 670 && mouseY < 700 && mouseX >= 0 && mouseX <= 100){
+      println("go to guide");
+      currentScreen = Screen.Guide;
+      return;
       //setup();
-      guideScreen();
+ //     guideScreen();
     }
   }
   //guide page
   // check press on the back arrow
-  if(gameScreen == 3){
-     if (mouseX > gs.backBtnX && mouseX < gs.backBtnX + gs.backWidth &&
-        mouseY > gs.backBtnY && mouseY < gs.backBtnY + gs.backWidth){
-      gameScreen = 0;
+  if(currentScreen == Screen.Guide){
+    println(gs.backButtonX);
+    println(gs.backButtonY);
+    println(gs.buttonWidth);
+     if (mouseX > gs.backButtonX && mouseX < gs.backButtonX + gs.buttonWidth &&
+        mouseY > gs.backButtonY && mouseY < gs.backButtonY + gs.buttonWidth){
+      currentScreen = Screen.Init;
+      return;
       //setup();  
-     initScreen();
+     //initScreen();
     }
   }
-    
 }
+
 Platform generatePlatform(int heightIndex){
     Random rand = new Random();
     int randomNum = rand.nextInt(100);
