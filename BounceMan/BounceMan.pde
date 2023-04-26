@@ -22,6 +22,7 @@ void setup(){
   
   //width = 500, height = 800;
   size(500, 800); 
+  
   stars = new StarrySky(100);
   
   player = new Player (width / 2, height * 0.80);
