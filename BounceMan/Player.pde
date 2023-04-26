@@ -49,6 +49,12 @@ class Player {
   
   boolean isContact(Platform platform) {
     if (xCoordinate < platform.xCoordinate + 80 && xCoordinate + 50 > platform.xCoordinate && yCoordinate < platform.yCoordinate + 20 && 55 + yCoordinate > platform.yCoordinate) {
+      if(platform.platformType==PlatformType.FRAGILE_TYPE){
+        FragilePlatform fragilePlatform=(FragilePlatform)platform;
+        if(fragilePlatform.hasVanished==true){
+          return false;
+        }
+      }
       if (velocity > 0) {
         bounce();
         return true;

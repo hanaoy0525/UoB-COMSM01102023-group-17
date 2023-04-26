@@ -30,7 +30,7 @@ void setup(){
 
   //generating platform initially
   for (int i = 0; i < 12; i++) {
-    platforms.add(generatePlatform(i));
+    platforms.add(generatePlatform(i, 0));
   }
   
   changeCur=0;
@@ -77,7 +77,7 @@ void gameScreen() {
   stars.update(); 
   stars.display(); 
   
-  text("score: " + score, 380, 20);
+  text("score: " + score, 360, 20);
   player.display();
   player.move();
   player.update();
@@ -89,9 +89,7 @@ void gameScreen() {
     player.yCoordinate = height / 2;
   }
   
-  int deletedPlatformIndex = -1;
-  for (int i = 0; i < platforms.size(); i++) {
-    Platform platform = platforms.get(i);
+  for (Platform platform: platforms) {
     platform.display();
     platform.update();
     
@@ -102,26 +100,22 @@ void gameScreen() {
         score++;
       }
       if (platform.platformType == PlatformType.FRAGILE_TYPE) {
-        deletedPlatformIndex = i;
+        FragilePlatform fragilePlatform=(FragilePlatform)platform;
+        fragilePlatform.vanish();
       }
     }
   }
   
-  if (deletedPlatformIndex != -1) {
-    platforms.remove(deletedPlatformIndex);
-    platforms.add(0, generatePlatform(0));
-  }
-  
   //generate new platform at the top of the screen
-  for(int i = 0; i < platforms.size(); i++){
+  for(int i=platforms.size()-1; 0<=i ; i--){
     if (platforms.get(i).yCoordinate > height) {
-      platforms.set(i,generatePlatform(0));
+      int offset=(int)platforms.get(i).yCoordinate-height;
+      platforms.set(i,generatePlatform(0, offset));
     }
   }
   floatPlatformMove();
   
   if (player.yCoordinate > height) {
-    setup();
     currentScreen = Screen.Over;
   }
 }
@@ -131,12 +125,15 @@ void gameOverScreen() {
   background(0);
   textSize(100);
   text("GAME OVER", 10, 400);
+  textSize(45);
+  text("score: "+score, 190, 500);
+  
   textSize(30);
   text("Press any key to return", 10, 600);
   if(keyPressed){
+    setup();
     currentScreen = Screen.Init;
     initScreen();
-    
  }
 }
  
@@ -163,18 +160,18 @@ void mouseClicked() {
   }
 }
 
-Platform generatePlatform(int heightIndex){
+Platform generatePlatform(int heightIndex, int offset){
     Random rand = new Random();
     int randomNum = rand.nextInt(100);
     
     if (randomNum < 80){
-      return new Platform(random(40, width - 40), heightIndex * 60);
+      return new Platform(random(40, width - 40), heightIndex * 60 + offset);
     }
     else if (randomNum < 90){
-      return new FragilePlatform(random(40, width - 40), heightIndex * 60);
+      return new FragilePlatform(random(40, width - 40), heightIndex * 60 + offset);
     }
     else{
-      return new FloatPlatform(random(50, width - 50), heightIndex * 60);
+      return new FloatPlatform(random(50, width - 50), heightIndex * 60 + offset);
     }
 }
 

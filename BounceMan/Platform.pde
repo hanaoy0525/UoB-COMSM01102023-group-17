@@ -71,11 +71,26 @@ class Platform {
 }
 
 class FragilePlatform extends Platform{
+  public boolean hasVanished;
   public FragilePlatform(float x, float y){
     super(x, y);
     platformImage = loadImage("single_platform2.png");
     platformImage.resize(80,20);
     platformType = PlatformType.FRAGILE_TYPE;
+    
+    this.hasVanished=false;
+  }
+  
+  public void vanish(){
+    this.hasVanished=true;
+  }
+  public void display(){
+    if(this.hasVanished==false){
+      super.display();
+    }
+    else{
+      return;
+    }
   }
 }
 
