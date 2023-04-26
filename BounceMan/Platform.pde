@@ -10,9 +10,9 @@ enum Direction{
 }
 
 class Platform {
-  public float x;
-  public float y;
-  public float v;
+  public float xCoordinate;
+  public float yCoordinate;
+  public float velocity;
   public PImage platformImage;
   public PlatformType platformType;
   
@@ -20,32 +20,29 @@ class Platform {
   boolean hasContacted;
   
   Platform (float x, float y){
-    this.x = x;
-    this.y = y;
+    this.xCoordinate = x;
+    this.yCoordinate = y;
 
     platformImage = loadImage("single_platform1.png");
     
     platformImage.resize(80,20);
     
-    hasContacted=false;
+    hasContacted = false;
     
     platformType=PlatformType.NORMAL_TYPE;
   }
   
   void display(){
     imageMode(CENTER);
-    image(platformImage, x, y);
-    //fill(255);
-    //rectMode(CENTER);
-    //rect(x, y, 80, 20);
+    image(platformImage, xCoordinate, yCoordinate);
   }
   
   void setV(float playerV) {
-   v = playerV; 
+   velocity = playerV; 
   }
   
   void update() {
-    y -= v;
+    yCoordinate -= velocity;
   }
   
   public void setContacted(){
@@ -66,9 +63,9 @@ class Platform {
 
   public void floatMove(){
     if (dir == Direction.LEFT){
-        x-=2;
+        xCoordinate -= 2;
     }else{
-        x+=2;
+        xCoordinate += 2;
     }
   }
 }
@@ -106,9 +103,9 @@ class FloatPlatform extends Platform{
 
   public void floatMove(){
     if (dir == Direction.LEFT){
-        x-=2;
+        xCoordinate -= 2;
     }else{
-        x+=2;
+        xCoordinate += 2;
     }
   }
 }

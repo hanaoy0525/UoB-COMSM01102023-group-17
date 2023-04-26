@@ -1,5 +1,5 @@
-import processing.sound.*;
-SoundFile bounce;
+//import processing.sound.*;
+//SoundFile bounce;
 
 class Player {
   float xCoordinate; // x - coordinate
@@ -19,10 +19,6 @@ class Player {
     imageMode(CORNER);
     image(man, xCoordinate - 25, yCoordinate - 25);
     man.resize(60,50);
-
-    //fill(255);
-    //rectMode(CENTER);
-    //rect(x, y, 50, 50);
   }
   
   void move(){
@@ -41,8 +37,8 @@ class Player {
   }
   
   void bounce(){
-    bounce = new SoundFile(BounceMan.this, "bounce.wav");
-    bounce.play();
+    //bounce = new SoundFile(BounceMan.this, "bounce.wav");
+    //bounce.play();
      velocity = -15;
   } 
   
@@ -52,7 +48,7 @@ class Player {
   }
   
   boolean isContact(Platform platform) {
-    if (xCoordinate < platform.x + 80 && xCoordinate + 50 > platform.x && yCoordinate < platform.y + 20 && 55 + yCoordinate > platform.y) {
+    if (xCoordinate < platform.xCoordinate + 80 && xCoordinate + 50 > platform.xCoordinate && yCoordinate < platform.yCoordinate + 20 && 55 + yCoordinate > platform.yCoordinate) {
       if (velocity > 0) {
         bounce();
         return true;

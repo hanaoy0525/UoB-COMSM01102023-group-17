@@ -1,5 +1,4 @@
-import processing.sound.*;
-SoundFile background;
+//SoundFile background;
 import java.util.Random;
 
 Screen currentScreen = Screen.Init;
@@ -18,17 +17,19 @@ int score;
 GuideScreen gs;
 
 void setup(){
-  background = new SoundFile(this, "music1.mp3");
-  background.loop();
-  size(500, 800);
+  //background = new SoundFile(this, "music1.mp3");
+  //background.loop();
+  
+  //width = 500, height = 800;
+  size(500, 800); 
   stars = new StarrySky(100);
   
-  player = new Player (width/2, height * 0.80);
+  player = new Player (width / 2, height * 0.80);
   
   platforms = new ArrayList<Platform>();
 
   //generating platform initially
-  for (int i = 1; i < 12; i++) {
+  for (int i = 0; i < 12; i++) {
     platforms.add(generatePlatform(i));
   }
   
@@ -42,7 +43,6 @@ void setup(){
 }
 
 void draw(){
-  
   if (currentScreen == Screen.Init) {
     initScreen();
   }
@@ -57,85 +57,73 @@ void draw(){
   
   if(currentScreen == Screen.Guide){
     guideScreen();
-  }
-  
-  
+  } 
 }
 
 void initScreen() {
-
   stars.update(); 
   stars.display(); 
-  //background(bg0);
 
   textSize(50);
   text("Bounce MAN", 10, 400);
   textSize(30);
   text("click to start", 10, 600);
-  /*
-  if(mousePressed){
-    currentScreen = Screen.Play;
-  }
-  */
-  //guide
   text("guide", 10, 700);
-  /*
-  if(mousePressed){
-    currentScreen = Screen.Guide;
-  }
-  */
 }
 
 void gameScreen() {
 
-  stars.update(); // update background
-  stars.display(); // display background
+  // update and display background
+  stars.update(); 
+  stars.display(); 
   
-  text("score: "+score, 380, 20);
+  text("score: " + score, 380, 20);
   player.display();
   player.move();
   player.update();
  
-  while (player.yCoordinate < height/2) {
+  while (player.yCoordinate < height / 2) {
       for (Platform platform : platforms) {
         platform.setV(player.velocity);
       }
-    player.yCoordinate = height/2;
+    player.yCoordinate = height / 2;
   }
-  int deletedPlatformIndex=-1;
-  for (int i=0;i < platforms.size();i++) {
-    Platform platform=platforms.get(i);
+  
+  int deletedPlatformIndex = -1;
+  for (int i = 0; i < platforms.size(); i++) {
+    Platform platform = platforms.get(i);
     platform.display();
     platform.update();
-    boolean hasContacted=player.isContact(platform);
-    if(hasContacted==true){
-      if(platform.hasContactedBefore()==false){
+    
+    boolean hasContacted = player.isContact(platform);
+    if (hasContacted == true) {
+      if(platform.hasContactedBefore() == false){
         platform.setContacted();
         score++;
       }
-      if(platform.platformType==PlatformType.FRAGILE_TYPE){
-        deletedPlatformIndex=i;
+      if (platform.platformType == PlatformType.FRAGILE_TYPE) {
+        deletedPlatformIndex = i;
       }
     }
   }
-  if(deletedPlatformIndex!=-1){
+  
+  if (deletedPlatformIndex != -1) {
     platforms.remove(deletedPlatformIndex);
-    deletedPlatformIndex=-1;
-    platforms.add(generatePlatform(0));
+    platforms.add(0, generatePlatform(0));
   }
   
   //generate new platform at the top of the screen
-  for(int i=0; i<platforms.size();i++){
-    if (platforms.get(i).y > height) {
+  for(int i = 0; i < platforms.size(); i++){
+    if (platforms.get(i).yCoordinate > height) {
       platforms.set(i,generatePlatform(0));
     }
   }
   floatPlatformMove();
+  
   if (player.yCoordinate > height) {
     setup();
     currentScreen = Screen.Over;
   }
-  
 }
 
 void gameOverScreen() {
@@ -152,54 +140,25 @@ void gameOverScreen() {
  }
 }
  
- void guideScreen() { 
-   /*
-     todo: there is some problem with switching back to init page from guidepage
-   */
+void guideScreen() { 
     gs.display();
- }
- /*
- void mouseMoved() {
-  //check mouse on the back arrow
-  if (mouseX > gs.backButtonX && mouseX < gs.backButtonX + gs.buttonWidth &&
-      mouseY > gs.backButtonY && mouseY < gs.backButtonY + gs.buttonWidth) {
-    println("mouse is on the back arrow");
-    gs.buttonWidth = 60;
-  }else{
-    gs.buttonWidth = 50;
-  }
- }
- */
+}
  
 void mouseClicked() {
-  //start page
   if(currentScreen == Screen.Init){
     if(mouseY > 570 && mouseY < 600 && mouseX >= 0 && mouseX <= 180){
       currentScreen = Screen.Play;
       return;
- //     setup();
-//     gameScreen();
     }
     if(mouseY > 670 && mouseY < 700 && mouseX >= 0 && mouseX <= 100){
-      println("go to guide");
       currentScreen = Screen.Guide;
       return;
-      //setup();
- //     guideScreen();
     }
-  }
-  //guide page
-  // check press on the back arrow
-  if(currentScreen == Screen.Guide){
-    println(gs.backButtonX);
-    println(gs.backButtonY);
-    println(gs.buttonWidth);
+  } else if(currentScreen == Screen.Guide){
      if (mouseX > gs.backButtonX && mouseX < gs.backButtonX + gs.buttonWidth &&
         mouseY > gs.backButtonY && mouseY < gs.backButtonY + gs.buttonWidth){
       currentScreen = Screen.Init;
       return;
-      //setup();  
-     //initScreen();
     }
   }
 }
@@ -208,14 +167,14 @@ Platform generatePlatform(int heightIndex){
     Random rand = new Random();
     int randomNum = rand.nextInt(100);
     
-    if(randomNum < 80){
-      return new Platform(random(40, width - 40), heightIndex * 65);
+    if (randomNum < 80){
+      return new Platform(random(40, width - 40), heightIndex * 60);
     }
-    else if(80 <= randomNum && randomNum < 90){
-      return new FragilePlatform(random(40, width - 40), heightIndex * 65);
+    else if (randomNum < 90){
+      return new FragilePlatform(random(40, width - 40), heightIndex * 60);
     }
     else{
-      return new FloatPlatform(random(40, width - 40), heightIndex * 65);
+      return new FloatPlatform(random(50, width - 50), heightIndex * 60);
     }
 }
 
