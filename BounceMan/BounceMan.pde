@@ -1,4 +1,4 @@
-//SoundFile background;
+SoundFile background;
 import java.util.Random;
 
 Screen currentScreen = Screen.Init;
@@ -17,8 +17,8 @@ int score;
 GuideScreen gs;
 
 void setup(){
-  //background = new SoundFile(this, "music1.mp3");
-  //background.loop();
+  background = new SoundFile(this, "music1.mp3");
+  background.loop();
   
   //width = 500, height = 800;
   size(500, 800); 
@@ -29,7 +29,7 @@ void setup(){
   platforms = new ArrayList<Platform>();
 
   //generating platform initially
-  for (int i = 0; i < 12; i++) {
+  for (int i = 0; i < 10; i++) {
     platforms.add(generatePlatform(i, 0));
   }
   
@@ -165,13 +165,13 @@ Platform generatePlatform(int heightIndex, int offset){
     int randomNum = rand.nextInt(100);
     
     if (randomNum < 80){
-      return new Platform(random(40, width - 40), heightIndex * 60 + offset);
+      return new Platform(random(40, width - 40), heightIndex * 75 + offset);
     }
     else if (randomNum < 90){
-      return new FragilePlatform(random(40, width - 40), heightIndex * 60 + offset);
+      return new FragilePlatform(random(40, width - 40), heightIndex * 75 + offset);
     }
     else{
-      return new FloatPlatform(random(50, width - 50), heightIndex * 60 + offset);
+      return new FloatPlatform(random(50, width - 50), heightIndex * 75 + offset);
     }
 }
 

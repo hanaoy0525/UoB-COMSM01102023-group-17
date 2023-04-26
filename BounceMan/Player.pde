@@ -1,5 +1,5 @@
-//import processing.sound.*;
-//SoundFile bounce;
+import processing.sound.*;
+SoundFile bounce;
 
 class Player {
   float xCoordinate; // x - coordinate
@@ -37,8 +37,8 @@ class Player {
   }
   
   void bounce(){
-    //bounce = new SoundFile(BounceMan.this, "bounce.wav");
-    //bounce.play();
+    bounce = new SoundFile(BounceMan.this, "bounce.wav");
+    bounce.play();
      velocity = -15;
   } 
   
