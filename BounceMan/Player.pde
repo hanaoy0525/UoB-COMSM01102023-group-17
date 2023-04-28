@@ -17,8 +17,8 @@ class Player {
   
   void display(){
     imageMode(CORNER);
-    image(man, xCoordinate - 25, yCoordinate - 25);
     man.resize(60,50);
+    image(man, xCoordinate - 25, yCoordinate - 25);
   }
   
   void move(){

@@ -1,19 +1,18 @@
 class GuideMan {
-  PImage img; // 图片对象
-  float x, y; // 图片的坐标
-  float xSpeed, ySpeed; // 图片在 x 和 y 方向上的速度
-  float gravity; // 重力加速度
-  float groundHeight; // 地面高度
-  int imgWidth, imgHeight; // 图片的宽度和高度
+  PImage img; 
+  float x, y; //img position
+  float xSpeed, ySpeed;
+  float gravity;
+  float groundHeight; 
+  int imgWidth, imgHeight;
 
   GuideMan (String imagePath, float x, float y, float groundHeight) {
-    img = loadImage(imagePath); // 加载图片
-    imgWidth = 60; // 图片宽度设定为90像素
-    imgHeight = 50; // 图片高度设定为90像素
-    img.resize(imgWidth, imgHeight); // 缩小图片尺寸
+    img = loadImage(imagePath); 
+    imgWidth = 60;
+    imgHeight = 50; 
+    img.resize(imgWidth, imgHeight); 
     this.x = x;
     this.y = y;
-    xSpeed = 0;
     ySpeed = 0;
     gravity = 0.5;
     this.groundHeight = groundHeight;
@@ -21,30 +20,20 @@ class GuideMan {
 
   void display() {
     imageMode(CORNER);
-    image(img, x, y); // 显示图片
+    image(img, x, y); 
   }
 
   void update() {
-    // 更新图片位置
-    x += xSpeed;
+    
     y += ySpeed;
 
-    // 检测窗口边界
-    if (x > width) {
-      x = 0;
-    } else if (x < 0) {
-      x = width;
-    }
-
-    // 检测地面
     if (y > height - groundHeight) {
       y = height - groundHeight;
-      ySpeed *= -1; // 反转 y 方向速度，实现弹跳效果
+      ySpeed *= -1; // change y direction
     }
 
-    // 更新速度
     ySpeed += gravity;
     
-    display(); // 显示图片
+    display(); 
   }
 }
