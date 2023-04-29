@@ -42,7 +42,7 @@ class GuideScreen{
     
     //Prompt information
     fill(255);
-    textFont(createFont("Comic Sans MS", 40, true)); 
+    //textFont(createFont("Comic Sans MS", 40, true)); 
     text("Guide", width/2 - 50, 50);
     
     //textSize(25);
@@ -54,7 +54,7 @@ class GuideScreen{
     //back arrow
     image(backArrowImg, backButtonX, backButtonY, buttonWidth,buttonWidth);
     fill(255);
-    textFont(createFont("Comic Sans MS", 30, true)); 
+    //textFont(createFont("Comic Sans MS", 30, true)); 
     text("Got it!", backButtonX + 70 , backButtonY + 35);
     
     //guide content
@@ -72,10 +72,8 @@ class GuideScreen{
   }
     
   void update() {
-      //check mouse on the back arrow
       if (mouseX > gs.backButtonX && mouseX < gs.backButtonX + gs. buttonWidth &&
           mouseY > gs.backButtonY && mouseY < gs.backButtonY + gs.buttonWidth) {
-            println("mouse is on the back arrow");
             gs.buttonWidth = 60;
       }else{
          gs.buttonWidth = 50;
