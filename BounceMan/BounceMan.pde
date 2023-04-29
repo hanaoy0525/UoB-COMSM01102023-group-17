@@ -9,6 +9,7 @@ Player player;
 PImage bg0;
 PImage bg1;
 PImage bg2;
+PImage gameOver;
 
 int changeCur;
 int changeScale;
@@ -134,9 +135,12 @@ void gameOverScreen() {
   
   background(0);
   textSize(95);
-  text("GAME OVER", 10, 200);
+  //text("GAME OVER", 10, 200);
+  gameOver = loadImage("GameOver.png");
+  gameOver.resize(gameOver.width/2, gameOver.height/2);
+  image(gameOver, 250,200);
   textSize(60);
-  text("SCORE: "+score, 120, 350);
+  text("SCORE: "+score, 120, 450);
   
   textSize(50);
   text("RETRY: R", 10, 550);
