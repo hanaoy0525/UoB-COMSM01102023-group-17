@@ -72,8 +72,8 @@ void initScreen() {
   textSize(90);
   text("Bounce MAN", 10, 400);
   textSize(30);
-  text("click to start", 10, 600);
-  text("guide", 10, 700);
+  text("START", 10, 600);
+  text("GUIDE", 10, 700);
 }
 
 void gameScreen() {
@@ -82,7 +82,8 @@ void gameScreen() {
   stars.update(); 
   stars.display(); 
   
-  text("score: " + score, 360, 25);
+  textSize(40);
+  text("SCORE: " + score, 330, 50);
   player.display();
   player.move();
   player.update();
