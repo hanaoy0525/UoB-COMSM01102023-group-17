@@ -84,6 +84,7 @@ void gameScreen() {
   
   textSize(40);
   text("SCORE: " + score, 330, 50);
+
   player.display();
   player.move();
   player.update();
@@ -182,13 +183,13 @@ Platform generatePlatform(int heightIndex, int offset){
     Random rand = new Random();
     int randomNum = rand.nextInt(100);
     
-    if (randomNum < 60){
+    if (randomNum < 70){
       return new Platform(random(40, width - 40), heightIndex * 75 + offset);
     }
-    else if (randomNum < 70){
+    else if (randomNum < 80){
       return new FragilePlatform(random(40, width - 40), heightIndex * 75 + offset);
     }
-    else if (randomNum < 80){
+    else if (randomNum < 90){
       return new FloatPlatform(random(50, width - 50), heightIndex * 75 + offset);
     }
     else{
