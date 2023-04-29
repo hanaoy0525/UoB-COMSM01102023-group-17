@@ -69,7 +69,7 @@ void initScreen() {
   stars.update(); 
   stars.display(); 
 
-  textSize(50);
+  textSize(90);
   text("Bounce MAN", 10, 400);
   textSize(30);
   text("click to start", 10, 600);
@@ -132,21 +132,21 @@ void gameScreen() {
 void gameOverScreen() {
   
   background(0);
-  textSize(100);
-  text("GAME OVER", 10, 400);
-  textSize(45);
-  text("score: "+score, 190, 500);
+  textSize(95);
+  text("GAME OVER", 10, 200);
+  textSize(60);
+  text("SCORE: "+score, 120, 350);
   
-  textSize(30);
-  text("Press r\\R to retry", 10, 600);
-  text("or press any other key to return", 10, 650);
+  textSize(50);
+  text("RETRY: R", 10, 550);
+  text("MENU: SPACE", 10, 650);
   if(keyPressed){
     if(key == 'r' || key=='R'){
       setup();
       currentScreen=Screen.Play;
       gameScreen();
     }
-    else{
+    if(key == ' '){
       setup();
       currentScreen = Screen.Init;
       initScreen(); 
@@ -181,13 +181,13 @@ Platform generatePlatform(int heightIndex, int offset){
     Random rand = new Random();
     int randomNum = rand.nextInt(100);
     
-    if (randomNum < 75){
+    if (randomNum < 60){
       return new Platform(random(40, width - 40), heightIndex * 75 + offset);
     }
-    else if (randomNum < 85){
+    else if (randomNum < 70){
       return new FragilePlatform(random(40, width - 40), heightIndex * 75 + offset);
     }
-    else if (randomNum < 95){
+    else if (randomNum < 80){
       return new FloatPlatform(random(50, width - 50), heightIndex * 75 + offset);
     }
     else{
