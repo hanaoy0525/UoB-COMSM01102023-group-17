@@ -13,12 +13,16 @@ PImage bg2;
 int changeCur;
 int changeScale;
 int score;
+boolean isStart = false;
 
 GuideScreen gs;
 
 void setup(){
-  background = new SoundFile(this, "music1.mp3");
-  background.loop();
+  if(!isStart){
+      background = new SoundFile(this, "music1.mp3");
+      background.loop();
+      isStart = true;
+  }
   
   //width = 500, height = 800;
   size(500, 800); 
