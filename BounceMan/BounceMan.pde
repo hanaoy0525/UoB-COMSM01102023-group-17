@@ -134,11 +134,19 @@ void gameOverScreen() {
   text("score: "+score, 190, 500);
   
   textSize(30);
-  text("Press any key to return", 10, 600);
+  text("Press r\\R to retry", 10, 600);
+  text("or press any other key to return", 10, 650);
   if(keyPressed){
-    setup();
-    currentScreen = Screen.Init;
-    initScreen();
+    if(key == 'r' || key=='R'){
+      setup();
+      currentScreen=Screen.Play;
+      gameScreen();
+    }
+    else{
+      setup();
+      currentScreen = Screen.Init;
+      initScreen(); 
+    }
  }
 }
  
