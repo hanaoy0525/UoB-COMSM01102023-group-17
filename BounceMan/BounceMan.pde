@@ -9,6 +9,8 @@ Player player;
 PImage bg0;
 PImage bg1;
 PImage bg2;
+PImage gameOver;
+PImage gameTitle;
 
 int changeCur;
 int changeScale;
@@ -70,7 +72,10 @@ void initScreen() {
   stars.display(); 
 
   textSize(90);
-  text("Bounce MAN", 10, 400);
+  //text("Bounce MAN", 10, 400);
+  gameTitle = loadImage("gameTitle.png");
+  gameTitle.resize(gameTitle.width/2, gameTitle.height/2);
+  image(gameTitle, 80,200);
   textSize(30);
   text("START", 10, 600);
   text("GUIDE", 10, 700);
@@ -135,9 +140,12 @@ void gameOverScreen() {
   
   background(0);
   textSize(95);
-  text("GAME OVER", 10, 200);
+  //text("GAME OVER", 10, 200);
+  gameOver = loadImage("GameOver.png");
+  gameOver.resize(gameOver.width/2, gameOver.height/2);
+  image(gameOver, 250,200);
   textSize(60);
-  text("SCORE: "+score, 120, 350);
+  text("SCORE: "+score, 120, 450);
   
   textSize(50);
   text("RETRY: R", 10, 550);
