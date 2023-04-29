@@ -34,7 +34,7 @@ class GuideScreen{
     stars.update(); 
     stars.display(); 
     platFormImg.resize(500, 0);
-   image(platFormImg, 0, height - platFormImg.height);
+    image(platFormImg, 0, height - platFormImg.height);
     
     //jump man
     guideMan.display();
@@ -43,7 +43,8 @@ class GuideScreen{
     //Prompt information
     fill(255);
     //textFont(createFont("Comic Sans MS", 40, true)); 
-    text("Guide", width/2 - 50, 50);
+    textSize(40);
+    text("GUIDE", width/2 - 50, 50);
     
     //textSize(25);
     //text("Bounce on the platforms\nto climb higher!", 10, 200);
@@ -55,7 +56,8 @@ class GuideScreen{
     image(backArrowImg, backButtonX, backButtonY, buttonWidth,buttonWidth);
     fill(255);
     //textFont(createFont("Comic Sans MS", 30, true)); 
-    text("Got it!", backButtonX + 70 , backButtonY + 35);
+    textSize(40);
+    text("GOT IT!", backButtonX + 70 , backButtonY + 35);
     
     //guide content
     guideFrameImg.resize(500,650);
