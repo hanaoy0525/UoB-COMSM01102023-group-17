@@ -82,7 +82,7 @@ void gameScreen() {
   stars.update(); 
   stars.display(); 
   
-  text("score: " + score, 360, 20);
+  text("score: " + score, 360, 25);
   player.display();
   player.move();
   player.update();
@@ -98,6 +98,10 @@ void gameScreen() {
     platform.display();
     platform.update();
     
+    if(player.hasContactEnemy(platform)){
+      currentScreen = Screen.Over;
+      break;
+    }
     boolean hasContacted = player.isContact(platform);
     if (hasContacted == true) {
       if(platform.hasContactedBefore() == false){
@@ -177,14 +181,17 @@ Platform generatePlatform(int heightIndex, int offset){
     Random rand = new Random();
     int randomNum = rand.nextInt(100);
     
-    if (randomNum < 80){
+    if (randomNum < 75){
       return new Platform(random(40, width - 40), heightIndex * 75 + offset);
     }
-    else if (randomNum < 90){
+    else if (randomNum < 85){
       return new FragilePlatform(random(40, width - 40), heightIndex * 75 + offset);
     }
-    else{
+    else if (randomNum < 95){
       return new FloatPlatform(random(50, width - 50), heightIndex * 75 + offset);
+    }
+    else{
+      return new EnemyPlatform(random(50, width - 50), heightIndex * 75 + offset);
     }
 }
 

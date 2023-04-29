@@ -1,7 +1,8 @@
 enum PlatformType{
   NORMAL_TYPE,
   FRAGILE_TYPE,
-  FLOAT_TYPE
+  FLOAT_TYPE,
+  ENEMY_TYPE
 }
 
 enum Direction{
@@ -121,6 +122,44 @@ class FloatPlatform extends Platform{
         xCoordinate -= 2;
     }else{
         xCoordinate += 2;
+    }
+  }
+}
+
+class EnemyPlatform extends Platform{
+  Direction enemyLocatedSide;
+  float enemyCoordinate_X;
+  float enemyCoordinate_Y;
+  PImage enemyImage;
+  public EnemyPlatform(float x, float y){
+    super(x, y);
+    platformImage = loadImage("single_platform1.png");
+    platformImage.resize(80,20);
+    platformType = PlatformType.ENEMY_TYPE;
+    if (Math.random() < 0.5){
+      this.enemyLocatedSide = Direction.LEFT;
+    }else{
+      this.enemyLocatedSide = Direction.RIGHT;
+    }
+    locateEnemy();
+    this.enemyImage = loadImage("setting_background_char.png");
+    this.enemyImage.resize(40,40);
+  }
+  void display(){
+    imageMode(CENTER);
+    image(super.platformImage, super.xCoordinate, super.yCoordinate);
+    locateEnemy();
+    image(this.enemyImage, this.enemyCoordinate_X, this.enemyCoordinate_Y);
+  }
+  
+  void locateEnemy(){
+    if(this.enemyLocatedSide==Direction.LEFT){
+      this.enemyCoordinate_X=super.xCoordinate - 20;
+      this.enemyCoordinate_Y=super.yCoordinate - 30;
+    }
+    else{
+      this.enemyCoordinate_X=super.xCoordinate + 20;
+      this.enemyCoordinate_Y=super.yCoordinate - 30;
     }
   }
 }

@@ -16,9 +16,12 @@ class Player {
   }
   
   void display(){
-    imageMode(CORNER);
-    man.resize(60,50);
-    image(man, xCoordinate - 25, yCoordinate - 25);
+    //imageMode(CORNER);
+    //man.resize(60,50);
+    //image(man, xCoordinate - 25, yCoordinate - 25);
+    imageMode(CENTER);
+    man.resize(50,50);
+    image(man, this.xCoordinate, this.yCoordinate);
   }
   
   void move(){
@@ -48,7 +51,7 @@ class Player {
   }
   
   boolean isContact(Platform platform) {
-    if (xCoordinate < platform.xCoordinate + 80 && xCoordinate + 50 > platform.xCoordinate && yCoordinate < platform.yCoordinate + 20 && 55 + yCoordinate > platform.yCoordinate) {
+    if (xCoordinate < platform.xCoordinate + 65 && xCoordinate + 65 > platform.xCoordinate && yCoordinate < platform.yCoordinate + 10 && 35 + yCoordinate > platform.yCoordinate) {
       if(platform.platformType==PlatformType.FRAGILE_TYPE){
         FragilePlatform fragilePlatform=(FragilePlatform)platform;
         if(fragilePlatform.hasVanished==true){
@@ -62,5 +65,22 @@ class Player {
     }
     return false;
   }
-  
+  boolean hasContactEnemy(Platform platform){
+    if(platform.platformType==PlatformType.ENEMY_TYPE){
+      EnemyPlatform enemyPlatform=(EnemyPlatform) platform;
+      if(xCoordinate < enemyPlatform.enemyCoordinate_X + 40 && xCoordinate + 40 > enemyPlatform.enemyCoordinate_X
+           && yCoordinate < enemyPlatform.enemyCoordinate_Y + 25 && 25 + yCoordinate > enemyPlatform.enemyCoordinate_Y){
+        if(velocity > 0){
+           return true;
+        }
+        return false;
+      }
+      else{
+        return false;
+      }
+    }
+    else{
+      return false;
+    }
+  }
 }
