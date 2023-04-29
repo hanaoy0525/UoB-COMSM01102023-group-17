@@ -10,6 +10,7 @@ PImage bg0;
 PImage bg1;
 PImage bg2;
 PImage gameOver;
+PImage gameTitle;
 
 int changeCur;
 int changeScale;
@@ -71,7 +72,10 @@ void initScreen() {
   stars.display(); 
 
   textSize(90);
-  text("Bounce MAN", 10, 400);
+  //text("Bounce MAN", 10, 400);
+  gameTitle = loadImage("gameTitle.png");
+  gameTitle.resize(gameTitle.width/2, gameTitle.height/2);
+  image(gameTitle, 80,200);
   textSize(30);
   text("START", 10, 600);
   text("GUIDE", 10, 700);
