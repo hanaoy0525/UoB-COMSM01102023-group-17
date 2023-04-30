@@ -90,7 +90,7 @@ void initScreen() {
   image(gameTitle, 250,200);
   image(start, 250, 400);
   image(guide, 250, 500);
-  image(difficulty, 250, 600);
+  //image(difficulty, 250, 600);
 }
 
 void gameScreen() {
@@ -138,7 +138,7 @@ void gameScreen() {
       }
     } 
     
-    lavaHeight += 0.1;
+    lavaHeight += 0.11;
   }
   
   //generate new platform at the top of the screen
