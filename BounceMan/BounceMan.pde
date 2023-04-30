@@ -6,11 +6,14 @@ StarrySky stars;
 ArrayList<Platform> platforms;
 Player player;
 
-PImage bg0;
-PImage bg1;
-PImage bg2;
+PImage background0;
+PImage background1;
+PImage background2;
 PImage gameOver;
 PImage gameTitle;
+PImage start;
+PImage guide;
+PImage difficulty;
 
 int changeCur;
 int changeScale;
@@ -19,7 +22,10 @@ boolean isStart = false;
 
 GuideScreen gs;
 
+float lavaHeight = 0;
+
 void setup(){
+  
   if(!isStart){
       background = new SoundFile(this, "music1.mp3");
       background.loop();
@@ -50,6 +56,7 @@ void setup(){
 }
 
 void draw(){
+  background(255);
   if (currentScreen == Screen.Init) {
     initScreen();
   }
@@ -70,15 +77,20 @@ void draw(){
 void initScreen() {
   stars.update(); 
   stars.display(); 
-
-  textSize(90);
-  //text("Bounce MAN", 10, 400);
   gameTitle = loadImage("gameTitle.png");
-  gameTitle.resize(gameTitle.width/2, gameTitle.height/2);
-  image(gameTitle, 80,200);
-  textSize(30);
-  text("START", 10, 600);
-  text("GUIDE", 10, 700);
+  gameTitle.resize(gameTitle.width, gameTitle.height);
+  start = loadImage("start.png");
+  start.resize(start.width/2, start.height/2);
+  guide = loadImage("guide.png");
+  guide.resize(guide.width/2, guide.height/2);
+  difficulty = loadImage("difficulty.png");
+  difficulty.resize(difficulty.width/2, difficulty.height/2);
+
+  imageMode(CENTER);
+  image(gameTitle, 250,200);
+  image(start, 250, 400);
+  image(guide, 250, 500);
+  image(difficulty, 250, 600);
 }
 
 void gameScreen() {
@@ -93,6 +105,10 @@ void gameScreen() {
   player.display();
   player.move();
   player.update();
+  
+  rectMode(CORNER);
+  fill(color(127, 0, 0));
+  rect(0, height - lavaHeight, width, lavaHeight);
  
   while (player.yCoordinate < height / 2) {
       for (Platform platform : platforms) {
@@ -113,13 +129,16 @@ void gameScreen() {
     if (hasContacted == true) {
       if(platform.hasContactedBefore() == false){
         platform.setContacted();
+        lavaHeight -= 50;
         score++;
       }
       if (platform.platformType == PlatformType.FRAGILE_TYPE) {
         FragilePlatform fragilePlatform=(FragilePlatform)platform;
         fragilePlatform.vanish();
       }
-    }
+    } 
+    
+    lavaHeight += 0.1;
   }
   
   //generate new platform at the top of the screen
@@ -131,7 +150,8 @@ void gameScreen() {
   }
   floatPlatformMove();
   
-  if (player.yCoordinate > height) {
+  if (player.yCoordinate > height || player.yCoordinate > height - lavaHeight) {
+    lavaHeight = 0;
     currentScreen = Screen.Over;
   }
 }
@@ -170,11 +190,12 @@ void guideScreen() {
  
 void mouseClicked() {
   if(currentScreen == Screen.Init){
-    if(mouseY > 570 && mouseY < 600 && mouseX >= 0 && mouseX <= 180){
+    if(mouseX > 100 && mouseX < 413 &&
+      mouseY > 380 && mouseY < 450){
       currentScreen = Screen.Play;
       return;
     }
-    if(mouseY > 670 && mouseY < 700 && mouseX >= 0 && mouseX <= 100){
+    if(mouseX >= 200 && mouseX <= 325 && mouseY >= 500 && mouseY <= 555){
       currentScreen = Screen.Guide;
       return;
     }
