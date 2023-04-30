@@ -100,7 +100,7 @@ void gameScreen() {
   stars.display(); 
   
   textSize(40);
-  text("SCORE: " + score, 330, 50);
+  text("SCORE: " + score, 300, 50);
 
   player.display();
   player.move();
