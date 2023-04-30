@@ -212,13 +212,13 @@ Platform generatePlatform(int heightIndex, int offset){
     Random rand = new Random();
     int randomNum = rand.nextInt(100);
     
-    if (randomNum < 70){
+    if (randomNum < 35){
       return new Platform(random(40, width - 40), heightIndex * 75 + offset);
     }
-    else if (randomNum < 80){
+    else if (randomNum < 55){
       return new FragilePlatform(random(40, width - 40), heightIndex * 75 + offset);
     }
-    else if (randomNum < 90){
+    else if (randomNum < 75){
       return new FloatPlatform(random(50, width - 50), heightIndex * 75 + offset);
     }
     else{
