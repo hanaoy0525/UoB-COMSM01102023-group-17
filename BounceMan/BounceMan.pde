@@ -11,6 +11,9 @@ PImage bg1;
 PImage bg2;
 PImage gameOver;
 PImage gameTitle;
+PImage start;
+PImage guide;
+PImage difficulty;
 
 int changeCur;
 int changeScale;
@@ -74,11 +77,18 @@ void initScreen() {
   textSize(90);
   //text("Bounce MAN", 10, 400);
   gameTitle = loadImage("gameTitle.png");
-  gameTitle.resize(gameTitle.width/2, gameTitle.height/2);
-  image(gameTitle, 80,200);
-  textSize(30);
-  text("START", 10, 600);
-  text("GUIDE", 10, 700);
+  gameTitle.resize(gameTitle.width, gameTitle.height);
+  start = loadImage("start.png");
+  start.resize(start.width/2, start.height/2);
+  guide = loadImage("guide.png");
+  guide.resize(guide.width/2, guide.height/2);
+  difficulty = loadImage("difficulty.png");
+  difficulty.resize(difficulty.width/2, difficulty.height/2);
+  
+  image(gameTitle, 30,200);
+  image(start, 100, 400);
+  image(guide, 200, 500);
+  image(difficulty, 150, 600);
 }
 
 void gameScreen() {
@@ -169,11 +179,12 @@ void guideScreen() {
  
 void mouseClicked() {
   if(currentScreen == Screen.Init){
-    if(mouseY > 570 && mouseY < 600 && mouseX >= 0 && mouseX <= 180){
+    if(mouseX > 100 && mouseX < 413 &&
+      mouseY > 400 && mouseY < 450){
       currentScreen = Screen.Play;
       return;
     }
-    if(mouseY > 670 && mouseY < 700 && mouseX >= 0 && mouseX <= 100){
+    if(mouseX >= 200 && mouseX <= 325 && mouseY >= 500 && mouseY <= 555){
       currentScreen = Screen.Guide;
       return;
     }
