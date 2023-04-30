@@ -22,6 +22,8 @@ boolean isStart = false;
 
 GuideScreen gs;
 
+float lavaHeight = 0;
+
 void setup(){
   
   if(!isStart){
@@ -102,6 +104,10 @@ void gameScreen() {
   player.display();
   player.move();
   player.update();
+  
+  rectMode(CORNER);
+  fill(color(127, 0, 0));
+  rect(0, height - lavaHeight, width, lavaHeight);
  
   while (player.yCoordinate < height / 2) {
       for (Platform platform : platforms) {
@@ -122,13 +128,16 @@ void gameScreen() {
     if (hasContacted == true) {
       if(platform.hasContactedBefore() == false){
         platform.setContacted();
+        lavaHeight -= 50;
         score++;
       }
       if (platform.platformType == PlatformType.FRAGILE_TYPE) {
         FragilePlatform fragilePlatform=(FragilePlatform)platform;
         fragilePlatform.vanish();
       }
-    }
+    } 
+    
+    lavaHeight += 0.1;
   }
   
   //generate new platform at the top of the screen
@@ -140,7 +149,8 @@ void gameScreen() {
   }
   floatPlatformMove();
   
-  if (player.yCoordinate > height) {
+  if (player.yCoordinate > height || player.yCoordinate > height - lavaHeight) {
+    lavaHeight = 0;
     currentScreen = Screen.Over;
   }
 }
