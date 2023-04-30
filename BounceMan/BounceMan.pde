@@ -6,9 +6,9 @@ StarrySky stars;
 ArrayList<Platform> platforms;
 Player player;
 
-PImage bg0;
-PImage bg1;
-PImage bg2;
+PImage background0;
+PImage background1;
+PImage background2;
 PImage gameOver;
 PImage gameTitle;
 PImage start;
