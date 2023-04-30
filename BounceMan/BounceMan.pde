@@ -23,6 +23,7 @@ boolean isStart = false;
 GuideScreen gs;
 
 void setup(){
+  
   if(!isStart){
       background = new SoundFile(this, "music1.mp3");
       background.loop();
@@ -53,6 +54,7 @@ void setup(){
 }
 
 void draw(){
+  background(255);
   if (currentScreen == Screen.Init) {
     initScreen();
   }
@@ -73,9 +75,6 @@ void draw(){
 void initScreen() {
   stars.update(); 
   stars.display(); 
-
-  textSize(90);
-  //text("Bounce MAN", 10, 400);
   gameTitle = loadImage("gameTitle.png");
   gameTitle.resize(gameTitle.width, gameTitle.height);
   start = loadImage("start.png");
@@ -84,11 +83,12 @@ void initScreen() {
   guide.resize(guide.width/2, guide.height/2);
   difficulty = loadImage("difficulty.png");
   difficulty.resize(difficulty.width/2, difficulty.height/2);
-  
-  image(gameTitle, 30,200);
-  image(start, 100, 400);
-  image(guide, 200, 500);
-  image(difficulty, 150, 600);
+
+  imageMode(CENTER);
+  image(gameTitle, 250,200);
+  image(start, 250, 400);
+  image(guide, 250, 500);
+  image(difficulty, 250, 600);
 }
 
 void gameScreen() {
@@ -180,7 +180,7 @@ void guideScreen() {
 void mouseClicked() {
   if(currentScreen == Screen.Init){
     if(mouseX > 100 && mouseX < 413 &&
-      mouseY > 400 && mouseY < 450){
+      mouseY > 380 && mouseY < 450){
       currentScreen = Screen.Play;
       return;
     }
