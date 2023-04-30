@@ -195,7 +195,7 @@ void mouseClicked() {
       currentScreen = Screen.Play;
       return;
     }
-    if(mouseX >= 200 && mouseX <= 325 && mouseY >= 500 && mouseY <= 555){
+    if(mouseX >= 200 && mouseX <= 300 && mouseY >= 480 && mouseY <= 515){
       currentScreen = Screen.Guide;
       return;
     }
