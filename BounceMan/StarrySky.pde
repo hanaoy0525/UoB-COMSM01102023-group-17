@@ -1,40 +1,52 @@
-// Background
+class Star {
+  float x, y;
+  color c;
+  float speed;
+
+  Star(float x, float y) {
+    this.x = x;
+    this.y = y;
+    this.c = color(random(255), random(255), random(255));
+    this.speed = 1;
+  }
+
+  void update() {
+    x -= speed;
+    if (x < 0) {
+      x = width;
+      y = random(height);
+      c = color(random(255), random(255), random(255));
+      speed = 1;
+    }
+  }
+
+  void display() {
+    fill(c);
+    noStroke();
+    ellipse(x, y, random(1, 4), random(1, 4));
+  }
+}
+
 class StarrySky {
-  int numStars; 
-  float[] starX; 
-  float[] starY; 
-  color[] starColors; 
+  ArrayList<Star> stars;
 
   StarrySky(int numStars) {
-    this.numStars = numStars;
-    starX = new float[numStars];
-    starY = new float[numStars];
-    starColors = new color[numStars];
+    stars = new ArrayList<Star>();
     for (int i = 0; i < numStars; i++) {
-      starX[i] = random(width);
-      starY[i] = random(height);
-      starColors[i] = color(random(255), random(255), random(255));
-    }
-  }
-  
-  void display() {
-    background(0);
-    for (int i = 0; i < numStars; i++) {
-      fill(starColors[i]);
-      noStroke();
-      ellipse(starX[i], starY[i], 2, 2);
+      stars.add(new Star(random(width), random(height)));
     }
   }
 
-  // star will move to right one pixel per frame
   void update() {
-    for (int i = 0; i < numStars; i++) {
-      starX[i] += 1; 
-      if (starX[i] > width) {
-        starX[i] = 0;
-        starY[i] = random(height);
-        starColors[i] = color(random(255), random(255), random(255));
-      }
+    for (Star s : stars) {
+      s.update();
+    }
+  }
+
+  void display() {
+    background(0);
+    for (Star s : stars) {
+      s.display();
     }
   }
 }
