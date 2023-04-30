@@ -142,7 +142,17 @@ class EnemyPlatform extends Platform{
       this.enemyLocatedSide = Direction.RIGHT;
     }
     locateEnemy();
-    this.enemyImage = loadImage("A2V.gif");
+    
+    double enemeyImageOdd=Math.random();
+    if(enemeyImageOdd<0.33){
+      this.enemyImage = loadImage("enemy1.gif");
+    }
+    else if(enemeyImageOdd<0.67){
+      this.enemyImage = loadImage("enemy2.png");
+    }
+    else{
+      this.enemyImage = loadImage("enemy3.png");
+    }
     this.enemyImage.resize(50,50);
   }
   void display(){
