@@ -15,6 +15,8 @@ PImage start;
 PImage guide;
 PImage difficulty;
 
+PFont font;
+
 int changeCur;
 int changeScale;
 int score;
@@ -25,7 +27,8 @@ GuideScreen gs;
 float lavaHeight = 0;
 
 void setup(){
-  
+  font = createFont("Frogie.ttf", 32);
+  textFont(font);
   if(!isStart){
       background = new SoundFile(this, "music1.mp3");
       background.loop();
@@ -164,12 +167,12 @@ void gameOverScreen() {
   gameOver = loadImage("GameOver.png");
   gameOver.resize(gameOver.width/2, gameOver.height/2);
   image(gameOver, 250,200);
-  textSize(60);
-  text("SCORE: "+score, 120, 450);
+  textSize(70);
+  text("SCORE: "+score, 120, 430);
   
   textSize(50);
-  text("RETRY: R", 10, 550);
-  text("MENU: SPACE", 10, 650);
+  text("RETRY: R", 120, 550);
+  text("MENU: SPACE", 120, 650);
   if(keyPressed){
     if(key == 'r' || key=='R'){
       setup();
