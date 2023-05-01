@@ -54,13 +54,13 @@ We decided to take inspiration from Doodle Jump. This was because we were encour
 
 We developed a case diagram for this proposed game:
 
-![alt text](https://github.com/UoB-COMSM0110/2023-group-17/blob/main/Documents/Diagrams/Software%20Engineering%20Game%20Use%20Case%20Diagram.png)
+![alt text](Documents/Diagrams/Software%20Engineering%20Game%20Use%20Case%20Diagram.png)
 
 The diagram emphasized the simple user interaction that we were aiming for. One button to start playing, then another to play again when there is a game over. It also includes a very simple settings menu. This additional difficulty option was also included for avid gamers looking for even more of a challenge. 
 
 When deciding on a special gimmick for our version of Doodle Jump we looked at any issues we found in the original game. One problem was the option for player to be idle by bouncing on the same platform continuously. Though this meant the score would not increase we thought there was no real incentive for the player to keep moving at a faster pace. We decided to implement an object that would follow the player from below them, always forcing the player to move at a brisk pace and not staying at one spot for too long. This would also be good for a difficulty option as this object can be sped up or slowed down according to the player’s needs.
 
-As a team we made a [paper prototype]( https://raw.githubusercontent.com/UoB-COMSM0110/2023-group-17/main/PaperPrototype.mp4) to test out our game. This further solidified our game choice as we had a lot of fun playing our game. We showed our prototype to members of other groups and got positive feedback from our simple premise and fun game design.
+As a team we made a [paper prototype](PaperPrototype.mp4) to test out our game. This further solidified our game choice as we had a lot of fun playing our game. We showed our prototype to members of other groups and got positive feedback from our simple premise and fun game design.
 
 ## Design
 
@@ -72,11 +72,11 @@ Creating the class diagram allowed everyone on the team to get an idea of the di
 
 For the figure class in our game, we created four sub classes. As these sub classes all interact with each other they have an association. For example, if the player class were to touch the platform class it would call the bounce function. They all inherit the x and y location attribute from the figure class as it allows each figure to have its own location on the screen. The platform subclass has multiple variations. For example, a platform that was destroyed and would fall if the player makes contact. Further inheritance classes were made to represent this. These classes would have their own individual methods to show their specialization.  Our idea was to have a set destroyed function in the destroyed platform class which, when active, would remove any collision detection between the player and platform. These subclasses would also inherit methods from the platform class, allowing them all to detect contact with the player in a similar way. 
 
-![alt text](https://github.com/UoB-COMSM0110/2023-group-17/blob/main/Documents/Diagrams/Software%20Engineering%20Game%20Class%20Diagram.png)
+![alt text](Documents/Diagrams/Software%20Engineering%20Game%20Class%20Diagram.png)
 
 Our sequence diagram was made to understand how each participant in the system interacts over a period of time when an event occurs in the game. In this sequence diagram we used the example of the player inputting a basic command to move the character. 
 
-![alt text](https://github.com/UoB-COMSM0110/2023-group-17/blob/main/Documents/Diagrams/Software%20Engineering%20Game%20Sequence%20Diagram.png)
+![alt text](Documents/Diagrams/Software%20Engineering%20Game%20Sequence%20Diagram.png)
 
 The user’s input sends the message to the screen that the character has moved. This method changes the x and y variables of the player class and is displayed on the screen. The player class must then come into contact with another figure, these being either the enemy or platform class. The use of the alternative interaction frames in a sequence diagram allows us to show these two outcomes. When the player comes into contact with a figure it must send a message to request the figure type. If it is an enemy then a game over is returned to the screen. The screen then returns a game over to the user. If the figure is a platform, no matter what type, it will return a bounce function to the screen. The figure then returns an updateLocation message to the player class so its x and y locations can be correctly updated to respresent that the chracter has moved upwards. 
 
