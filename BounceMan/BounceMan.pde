@@ -24,7 +24,7 @@ boolean isStart = false;
 
 GuideScreen gs;
 
-float lavaHeight = 0;
+Lava lava;
 
 void setup(){
   font = createFont("Frogie.ttf", 32);
@@ -55,7 +55,11 @@ void setup(){
   //guidescreen
   gs = new GuideScreen();
   
+  //score displayed on the right-top of the screen
   score=0;
+  
+  //lava that would chase the player
+  lava=new Lava();
 }
 
 void draw(){
@@ -108,15 +112,12 @@ void gameScreen() {
   player.display();
   player.move();
   player.update();
-  
-  rectMode(CORNER);
-  fill(color(127, 0, 0));
-  rect(0, height - lavaHeight, width, lavaHeight);
  
   while (player.yCoordinate < height / 2) {
-      for (Platform platform : platforms) {
-        platform.setV(player.velocity);
-      }
+    for (Platform platform : platforms) {
+      platform.setV(player.velocity);
+    }
+    lava.descend();
     player.yCoordinate = height / 2;
   }
   
@@ -132,7 +133,7 @@ void gameScreen() {
     if (hasContacted == true) {
       if(platform.hasContactedBefore() == false){
         platform.setContacted();
-        lavaHeight -= 50;
+        
         score++;
       }
       if (platform.platformType == PlatformType.FRAGILE_TYPE) {
@@ -140,8 +141,8 @@ void gameScreen() {
         fragilePlatform.vanish();
       }
     } 
-    
-    lavaHeight += 0.11;
+    lava.display();
+    lava.ascend();
   }
   
   //generate new platform at the top of the screen
@@ -153,8 +154,8 @@ void gameScreen() {
   }
   floatPlatformMove();
   
-  if (player.yCoordinate > height || player.yCoordinate > height - lavaHeight) {
-    lavaHeight = 0;
+  if (player.yCoordinate > height || player.yCoordinate > height - lava.lavaHeight) {
+    //lavaHeight = 0;
     currentScreen = Screen.Over;
   }
 }
