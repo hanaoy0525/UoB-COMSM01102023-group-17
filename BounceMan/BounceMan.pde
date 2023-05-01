@@ -167,6 +167,7 @@ void gameOverScreen() {
   //text("GAME OVER", 10, 200);
   gameOver = loadImage("GameOver.png");
   gameOver.resize(gameOver.width/2, gameOver.height/2);
+  imageMode(CENTER);
   image(gameOver, 250,200);
   textSize(70);
   text("SCORE: "+score, 120, 430);
