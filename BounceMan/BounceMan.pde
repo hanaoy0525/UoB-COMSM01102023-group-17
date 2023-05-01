@@ -30,6 +30,9 @@ GuideScreen gs;
 
 Lava lava;
 
+//by default the game difficulty is medium
+Difficulty gameDiff=Difficulty.MEDIUM;
+
 void setup(){
   font = createFont("Frogie.ttf", 32);
   textFont(font);
@@ -64,6 +67,9 @@ void setup(){
   
   //lava that would chase the player
   lava=new Lava();
+  if(gameDiff!=Difficulty.HARD){
+    lava.noExist();
+  }
 }
 
 void draw(){
@@ -113,6 +119,10 @@ void gameScreen() {
   stars.update(); 
   stars.display(); 
   
+  if(gameDiff==Difficulty.EASY){
+    print("easy mode!");
+  }
+  
   textSize(40);
   text("SCORE: " + score, 300, 50);
 
@@ -124,7 +134,9 @@ void gameScreen() {
     for (Platform platform : platforms) {
       platform.setV(player.velocity);
     }
-    lava.descend();
+    if(lava.isExist==true){
+      lava.descend();
+    }
     player.yCoordinate = height / 2;
   }
   
@@ -148,8 +160,10 @@ void gameScreen() {
         fragilePlatform.vanish();
       }
     } 
-    lava.display();
-    lava.ascend();
+    if(lava.isExist==true){
+      lava.display();
+      lava.ascend();
+    }
   }
   
   //generate new platform at the top of the screen
@@ -161,7 +175,8 @@ void gameScreen() {
   }
   floatPlatformMove();
   
-  if (player.yCoordinate > height || player.yCoordinate > height - lava.lavaHeight) {
+  if (player.yCoordinate > height || (lava.isExist && player.yCoordinate > height - lava.lavaHeight)) {
+    
     //lavaHeight = 0;
     currentScreen = Screen.Over;
   }
@@ -224,6 +239,7 @@ void mouseClicked() {
     if(mouseX > 100 && mouseX < 413 &&
       mouseY > 380 && mouseY < 450){
       currentScreen = Screen.Play;
+      setup();
       return;
     }
     if(mouseX >= 200 && mouseX <= 300 && mouseY >= 480 && mouseY <= 515){
@@ -244,9 +260,24 @@ void mouseClicked() {
     }
     else if(currentScreen == Screen.Difficulty) {
       if(mouseX >= 0 && mouseX <= 80 && mouseY >= 680 && mouseY <= 750){
-      currentScreen = Screen.Init;
-      return;
-    }
+        currentScreen = Screen.Init;
+        return;
+      }
+      else if(mouseX >= 196 && mouseX <= 304 && mouseY >= 173 && mouseY <= 228){
+        gameDiff=Difficulty.EASY;
+        currentScreen = Screen.Init;
+        return;
+      }
+      else if(mouseX >= 196 && mouseX <= 304 && mouseY >= 373 && mouseY <= 428){
+        gameDiff=Difficulty.MEDIUM;
+        currentScreen = Screen.Init;
+        return;
+      }
+      else if(mouseX >= 196 && mouseX <= 304 && mouseY >= 573 && mouseY <= 628){
+        gameDiff=Difficulty.HARD;
+        currentScreen = Screen.Init;
+        return;
+      }
   }
 }
 
@@ -264,7 +295,13 @@ Platform generatePlatform(int heightIndex, int offset){
       return new FloatPlatform(random(50, width - 50), heightIndex * 75 + offset);
     }
     else{
-      return new EnemyPlatform(random(50, width - 50), heightIndex * 75 + offset);
+      // if the game level is medium or hard, there are enemies generated.
+      if(gameDiff==Difficulty.EASY){
+        return new Platform(random(40, width - 40), heightIndex * 75 + offset);
+      }
+      else{
+        return new EnemyPlatform(random(50, width - 50), heightIndex * 75 + offset);
+      }
     }
 }
 

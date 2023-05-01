@@ -1,10 +1,12 @@
 class Lava{
   private float lavaHeight;
   private float velocity;
+  public boolean isExist;
   
   public Lava(){
     this.lavaHeight=0;
     this.velocity=0.1;
+    this.isExist=true;
   }
 
   
@@ -26,5 +28,9 @@ class Lava{
   
   public void descend(){
     this.velocity=-1;
+  }
+  
+  public void noExist(){
+    this.isExist=false;
   }
 }
