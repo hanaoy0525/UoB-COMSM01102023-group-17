@@ -142,17 +142,7 @@ class EnemyPlatform extends Platform{
       this.enemyLocatedSide = Direction.RIGHT;
     }
     locateEnemy();
-    
-    double enemeyImageOdd=Math.random();
-    if(enemeyImageOdd<0.33){
-      this.enemyImage = loadImage("enemy1.gif");
-    }
-    else if(enemeyImageOdd<0.67){
-      this.enemyImage = loadImage("enemy2.png");
-    }
-    else{
-      this.enemyImage = loadImage("enemy3.png");
-    }
+    this.enemyImage = loadImage("enemy1.gif");
     this.enemyImage.resize(50,50);
   }
   void display(){
@@ -172,4 +162,25 @@ class EnemyPlatform extends Platform{
       this.enemyCoordinate_Y=super.yCoordinate - 30;
     }
   }
+}
+
+class Lava extends Platform {
+    float height;
+    public Lava(float x, float y) {
+        super(x, y);
+        height = 800;
+    }
+
+    @Override
+    void display() {
+        rectMode(CORNER);
+        fill(color(127, 0, 0));
+        rect(xCoordinate, height, 500, 800 - height);
+    }
+    
+    @Override
+    void update() {
+       height += velocity; 
+       height -= score / 50;
+    }
 }
