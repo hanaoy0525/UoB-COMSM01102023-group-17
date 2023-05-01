@@ -14,6 +14,10 @@ PImage gameTitle;
 PImage start;
 PImage guide;
 PImage difficulty;
+PImage arrow;
+PImage easy;
+PImage medium;
+PImage hard;
 
 PFont font;
 
@@ -25,6 +29,9 @@ boolean isStart = false;
 GuideScreen gs;
 
 Lava lava;
+
+//by default the game difficulty is medium
+Difficulty gameDiff=Difficulty.MEDIUM;
 
 void setup(){
   font = createFont("Frogie.ttf", 32);
@@ -60,6 +67,9 @@ void setup(){
   
   //lava that would chase the player
   lava=new Lava();
+  if(gameDiff!=Difficulty.HARD){
+    lava.noExist();
+  }
 }
 
 void draw(){
@@ -79,6 +89,9 @@ void draw(){
   if(currentScreen == Screen.Guide){
     guideScreen();
   } 
+  if(currentScreen == Screen.Difficulty){
+    difficultyScreen();
+  } 
 }
 
 void initScreen() {
@@ -97,7 +110,7 @@ void initScreen() {
   image(gameTitle, 250,200);
   image(start, 250, 400);
   image(guide, 250, 500);
-  //image(difficulty, 250, 600);
+  image(difficulty, 250, 600);
 }
 
 void gameScreen() {
@@ -105,6 +118,10 @@ void gameScreen() {
   // update and display background
   stars.update(); 
   stars.display(); 
+  
+  if(gameDiff==Difficulty.EASY){
+    print("easy mode!");
+  }
   
   textSize(40);
   text("SCORE: " + score, 300, 50);
@@ -117,7 +134,9 @@ void gameScreen() {
     for (Platform platform : platforms) {
       platform.setV(player.velocity);
     }
-    lava.descend();
+    if(lava.isExist==true){
+      lava.descend();
+    }
     player.yCoordinate = height / 2;
   }
   
@@ -141,8 +160,10 @@ void gameScreen() {
         fragilePlatform.vanish();
       }
     } 
-    lava.display();
-    lava.ascend();
+    if(lava.isExist==true){
+      lava.display();
+      lava.ascend();
+    }
   }
   
   //generate new platform at the top of the screen
@@ -154,7 +175,8 @@ void gameScreen() {
   }
   floatPlatformMove();
   
-  if (player.yCoordinate > height || player.yCoordinate > height - lava.lavaHeight) {
+  if (player.yCoordinate > height || (lava.isExist && player.yCoordinate > height - lava.lavaHeight)) {
+    
     //lavaHeight = 0;
     currentScreen = Screen.Over;
   }
@@ -192,24 +214,71 @@ void gameOverScreen() {
 void guideScreen() { 
     gs.display();
 }
- 
+
+void difficultyScreen() {
+  stars.update(); 
+  stars.display(); 
+  arrow = loadImage("back_arrow.png");
+  arrow.resize(50,50);
+  image(arrow, 30, 700);
+  easy = loadImage("easy.png");
+  easy.resize(easy.width/2, easy.height/2);
+  medium = loadImage("medium.png");
+  medium.resize(medium.width/2, medium.height/2);
+  hard = loadImage("hard.png");
+  hard.resize(hard.width/2, hard.height/2);
+  
+  imageMode(CENTER);
+  image(easy, 250, 200);
+  image(medium, 250, 400);
+  image(hard, 250, 600);
+  
+
+}
 void mouseClicked() {
   if(currentScreen == Screen.Init){
     if(mouseX > 100 && mouseX < 413 &&
       mouseY > 380 && mouseY < 450){
       currentScreen = Screen.Play;
+      setup();
       return;
     }
     if(mouseX >= 200 && mouseX <= 300 && mouseY >= 480 && mouseY <= 515){
       currentScreen = Screen.Guide;
       return;
     }
+    if(mouseX >= 150 && mouseX <= 375 && mouseY >= 550 && mouseY <= 655){
+      currentScreen = Screen.Difficulty;
+      return;
+    }
+    
   } else if(currentScreen == Screen.Guide){
      if (mouseX > gs.backButtonX && mouseX < gs.backButtonX + gs.buttonWidth &&
         mouseY > gs.backButtonY && mouseY < gs.backButtonY + gs.buttonWidth){
       currentScreen = Screen.Init;
       return;
+      } 
     }
+    else if(currentScreen == Screen.Difficulty) {
+      if(mouseX >= 0 && mouseX <= 80 && mouseY >= 680 && mouseY <= 750){
+        currentScreen = Screen.Init;
+        return;
+      }
+      else if(mouseX >= 196 && mouseX <= 304 && mouseY >= 173 && mouseY <= 228){
+        gameDiff=Difficulty.EASY;
+        currentScreen = Screen.Init;
+        return;
+      }
+      else if(mouseX >= 196 && mouseX <= 304 && mouseY >= 373 && mouseY <= 428){
+        gameDiff=Difficulty.MEDIUM;
+        currentScreen = Screen.Init;
+        return;
+      }
+      else if(mouseX >= 196 && mouseX <= 304 && mouseY >= 573 && mouseY <= 628){
+        gameDiff=Difficulty.HARD;
+        currentScreen = Screen.Init;
+        return;
+      }
   }
 }
 
@@ -227,7 +296,13 @@ Platform generatePlatform(int heightIndex, int offset){
       return new FloatPlatform(random(50, width - 50), heightIndex * 75 + offset);
     }
     else{
-      return new EnemyPlatform(random(50, width - 50), heightIndex * 75 + offset);
+      // if the game level is medium or hard, there are enemies generated.
+      if(gameDiff==Difficulty.EASY){
+        return new Platform(random(40, width - 40), heightIndex * 75 + offset);
+      }
+      else{
+        return new EnemyPlatform(random(50, width - 50), heightIndex * 75 + offset);
+      }
     }
 }
 

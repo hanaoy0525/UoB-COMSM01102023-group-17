@@ -2,5 +2,6 @@ enum Screen {
   Init,
   Play,
   Over,
-  Guide
+  Guide,
+  Difficulty
 }
