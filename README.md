@@ -10,11 +10,11 @@
 
 ## Group Photo
 
-![alt text](https://github.com/UoB-COMSM0110/2023-group-17/blob/main/GroupPicture.jpeg?raw=true)
+![alt text](GroupPicture.jpeg)
 
 # Project Report 
 
-![alt text](https://github.com/UoB-COMSM0110/2023-group-17/blob/main/Documents/bounce_man_header.png)
+![alt text](Documents/bounce_man_header.png)
 
 ## Introduction 
 
