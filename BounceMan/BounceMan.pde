@@ -145,10 +145,7 @@ void gameScreen() {
   // update and display background
   stars.update(); 
   stars.display(); 
-  
-  if(gameDiff==Difficulty.EASY){
-    print("easy mode!");
-  }
+
   
   textSize(40);
   text("SCORE: " + score, 300, 50);
@@ -267,6 +264,7 @@ void mouseClicked() {
   if(currentScreen == Screen.Init){
     if(mouseX > 100 && mouseX < 413 &&
       mouseY > 380 && mouseY < 450){
+      setup();
       currentScreen = Screen.Play;
       return;
     }
