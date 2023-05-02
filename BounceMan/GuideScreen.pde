@@ -62,7 +62,7 @@ class GuideScreen{
     guide_frameImg.resize(505,645);
     image(guide_frameImg, 0, 60);
     
-    text("Jump left and right.", 239, 148);
+    text("MOVE LEFT AND RIGHT!", 239, 148);
     guide_1moveImg.resize(290,99);
     image(guide_1moveImg, 30, 104);
     
@@ -70,15 +70,15 @@ class GuideScreen{
     guide_2rImg.resize(142,86);
     image(guide_2rImg, 39, 187);
     
-    text("Go back to menu.", 302, 311);
+    text("RETURN to START SCREEN!", 302, 311);
     guide_3spaceImg.resize(255,78);
     image(guide_3spaceImg, 42, 260);
     
-    text("Don't contact enemies on the platform.You will DIE!", 83, 415);
+    text("AVOID enemies on the platform!", 83, 415);
     guide_4enemyImg.resize(107,40);
     image(guide_4enemyImg, 45, 346);
     
-    text("Lava will go up, so hurry up!", 86, 519);
+    text("THE Lava APPROACHES... so hurry up!", 86, 519);
     guide_5lavaImg.resize(234,44);
     image(guide_5lavaImg, 46, 446);
     
