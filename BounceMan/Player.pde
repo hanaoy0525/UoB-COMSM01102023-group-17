@@ -16,11 +16,9 @@ class Player {
   }
   
   void display(){
-    //imageMode(CORNER);
-    //man.resize(60,50);
-    //image(man, xCoordinate - 25, yCoordinate - 25);
+
     imageMode(CENTER);
-    man.resize(50,50);
+    man.resize(50,40);
     image(man, this.xCoordinate, this.yCoordinate);
   }
   

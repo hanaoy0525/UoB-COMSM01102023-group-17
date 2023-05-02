@@ -127,6 +127,7 @@ void initScreen() {
   difficulty = loadImage("difficulty.png");
   difficulty.resize(difficulty.width/2, difficulty.height/2);
 
+  textSize(30);
   imageMode(CENTER);
   image(gameTitle, 250,200);
   image(start, 250, 400);

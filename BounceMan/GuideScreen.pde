@@ -19,6 +19,7 @@ class GuideScreen{
   GuideScreen(){
     size(500, 800);
     platFormImg = loadImage("setting_background_platform.png");
+    platFormImg.resize(500, 0);
     stars = new StarrySky(100);
     //back arrow
     backArrowImg = loadImage("back_arrow.png");
@@ -26,20 +27,32 @@ class GuideScreen{
     backButtonX = 30; 
     backButtonY =  600;
     backArrowImg.resize(buttonWidth, buttonWidth);
+    
     guideMan = new GuideMan("setting_background_char.png", 350, 500, 100);
-    //guide content
+    
+    
+    //guide content  
     guide_frameImg = loadImage("guide_frame.PNG");
+    guide_frameImg.resize(505,645);
     guide_1moveImg = loadImage("guide_1move.PNG");
+    guide_1moveImg.resize(290,99);
     guide_2rImg = loadImage("guide_2r.PNG");
+    guide_2rImg.resize(142,86);
     guide_3spaceImg = loadImage("guide_3space.PNG");
+    guide_3spaceImg.resize(255,78);
     guide_4enemyImg = loadImage("guide_4enemy.PNG");
+    guide_4enemyImg.resize(107,40);
     guide_5lavaImg = loadImage("guide_5lava.PNG");
+    guide_5lavaImg.resize(234,44);
     guide_arrowImg = loadImage("guide_arrow.PNG");
+     guide_arrowImg.resize(229,62);
   }
+  
   void display(){
     stars.update(); 
     stars.display(); 
-    platFormImg.resize(500, 0);
+    
+    imageMode(CORNER);
     image(platFormImg, 0, height - platFormImg.height);
     
     //Prompt information
@@ -52,37 +65,29 @@ class GuideScreen{
     //back arrow
     image(backArrowImg, backButtonX, backButtonY, buttonWidth,buttonWidth);
     fill(255);
-    //textFont(createFont("Comic Sans MS", 30, true)); 
     textSize(40);
     text("GOT IT!", backButtonX + 70 , backButtonY + 35);
     
     //guide content
     textSize(16);
     
-    guide_frameImg.resize(505,645);
     image(guide_frameImg, 0, 60);
     
     text("MOVE LEFT AND RIGHT!", 239, 148);
-    guide_1moveImg.resize(290,99);
     image(guide_1moveImg, 30, 104);
     
     text("Retry!", 241, 243);
-    guide_2rImg.resize(142,86);
     image(guide_2rImg, 39, 187);
     
     text("RETURN to START SCREEN!", 302, 311);
-    guide_3spaceImg.resize(255,78);
     image(guide_3spaceImg, 42, 260);
     
     text("AVOID enemies on the platform!", 83, 415);
-    guide_4enemyImg.resize(107,40);
     image(guide_4enemyImg, 45, 346);
     
     text("THE Lava APPROACHES... so hurry up!", 86, 519);
-    guide_5lavaImg.resize(234,44);
     image(guide_5lavaImg, 46, 446);
     
-    guide_arrowImg.resize(229,62);
     image(guide_arrowImg, 42, 552);
     
     
