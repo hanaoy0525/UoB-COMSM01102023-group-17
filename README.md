@@ -54,7 +54,7 @@ We decided to take inspiration from Doodle Jump. This was because we were encour
 
 We developed a case diagram for this proposed game:
 
-![alt text](Documents/Diagrams/Software%20Engineering%20Game%20Use%20Case%20Diagram.png)
+![alt text](Diagrams/Software%20Engineering%20Game%20Use%20Case%20Diagram.png)
 
 The diagram emphasized the simple user interaction that we were aiming for. One button to start playing, then another to play again when there is a game over. It also includes a very simple settings menu. This additional difficulty option was also included for avid gamers looking for even more of a challenge. 
 
@@ -72,11 +72,11 @@ Creating the class diagram allowed everyone on the team to get an idea of the di
 
 For the figure class in our game, we created four sub classes. As these sub classes all interact with each other they have an association. For example, if the player class were to touch the platform class it would call the bounce function. They all inherit the x and y location attribute from the figure class as it allows each figure to have its own location on the screen. The platform subclass has multiple variations. For example, a platform that was destroyed and would fall if the player makes contact. Further inheritance classes were made to represent this. These classes would have their own individual methods to show their specialization.  Our idea was to have a set destroyed function in the destroyed platform class which, when active, would remove any collision detection between the player and platform. These subclasses would also inherit methods from the platform class, allowing them all to detect contact with the player in a similar way. 
 
-![alt text](Documents/Diagrams/Software%20Engineering%20Game%20Class%20Diagram.png)
+![alt text](Diagrams/Software%20Engineering%20Game%20Class%20Diagram.png)
 
 Our sequence diagram was made to understand how each participant in the system interacts over a period of time when an event occurs in the game. In this sequence diagram we used the example of the player inputting a basic command to move the character. 
 
-![alt text](Documents/Diagrams/Software%20Engineering%20Game%20Sequence%20Diagram.png)
+![alt text](Diagrams/Software%20Engineering%20Game%20Sequence%20Diagram.png)
 
 The user’s input sends the message to the screen that the character has moved. This method changes the x and y variables of the player class and is displayed on the screen. The player class must then come into contact with another figure, these being either the enemy or platform class. The use of the alternative interaction frames in a sequence diagram allows us to show these two outcomes. When the player comes into contact with a figure it must send a message to request the figure type. If it is an enemy then a game over is returned to the screen. The screen then returns a game over to the user. If the figure is a platform, no matter what type, it will return a bounce function to the screen. The figure then returns an updateLocation message to the player class so its x and y locations can be correctly updated to respresent that the chracter has moved upwards. 
 
@@ -101,7 +101,9 @@ When the player character is moving upwards and reaches the middle of the screen
 The issue we now had to tackle was how to simulate gravity physics on the player character. In the player update() function the velocity of the player is increased. This velocity is then applied to the y location of the player character. This means each time the screen is refreshed the player falls at a faster rate than the last time it was refreshed to simulate gravity increasing the speed of the fall. When the player comes into contact with a platform the velocity is decreased. This means the player is moved upwards next time the screen is refreshed. The velocity is again decreased with each screen refresh, so the speed of the upwards movement is slowly being decreased until the character eventually starts to fall again.  
 
 The final challenge was balancing the game. We had to decide the size of the player and platforms. We used the original Doodle Jump for reference. The platforms would take up roughly 1/8th of the screen and the character would be slightly smaller than the platform. We also decided to make the platforms thick enough to visually help the user as the platforms would stand out more. We also decided to have each platform type be visually different. Players seeing a green platform knew it was safe while a yellow platform was riskier. Enemy platforms were also added to bring some challenge to the game. We also had to choose the speed of the player character, both vertically and horizontally. This decision was tougher as it was something we couldn’t just see and decide was okay. 
-As a team we played the game during each phase of development. This means everyone was able to give feedback on the difficulty. Our team is made up of casual, regular and avid gamers. This was especially important as we had feedback from all our stakeholders. During our evaluation phase we conducted further balance testing. 
+
+As a team we played the game during each phase of development. This means everyone was able to give feedback on the difficulty. Our team is made up of casual, regular and avid gamers. This was especially important as we had feedback from all our stakeholders. During our evaluation phase we conducted further balance testing. We implemented a difficulty mode to make sure this game was suitable for all skill levels. After internal discussions we decided to remove the enemies and lava from the easy difficulty. This would give the player the chance to familiarize themselves with the premise and controls. With each difficulty increase an extra obstacle would be added to the game, with medium adding enemies and hard adding lava.
+
 Eventually we came to a balancing decision we believe is challenging, fair and most importantly fun.
 
 ## Evaluation 
@@ -140,7 +142,7 @@ This is evidence of the lack of structure and direction from the team. Everyone 
 
 Through this project we experienced the challenges and triumphs that come with software development. We made the most of many techniques we learnt during the module to help with planning, developing and evaluating our game. We used class and sequence diagrams for the initial plan for the game. Using internal testing as well as qualitative and quantitative evaluations, we were able to modify and evolve these plans to meet with consumer and developed demands. This was all thanks to the flexibility offered by using an agile development cycle. 
 
-To improve on this game, we would have like to add a difficulty mode. This was something we talked about for a while but never managed to implement. We would also have liked to add a high score feature. This would allow people to score their scores and even compare them to others. Both these features would be geared to more serious gamers. 
+To improve on this game, we would have like to add a global high score leaderboard feature. This was something we talked about for a while but never managed to implement. This would allow people to score their scores and even compare them to others. Both these features would be geared to more serious gamers. 
 
 If we were to do this project again we would focus more on team roles. It would be important to have a lead developer, lead art designer and someone to organize the team admin. This would allow us to be more efficient as we are all working in the same direction. There was also poor levels of communication. Sometimes language barriers got in the way and there were points where some team members went missing after the end of terms. We would also have liked to have started development earlier. It wasn’t until Easter that we had a decent working product. However, this is the reality of student work. 
 
