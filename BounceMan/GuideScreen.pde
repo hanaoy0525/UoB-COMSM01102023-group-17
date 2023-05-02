@@ -85,7 +85,7 @@ class GuideScreen{
     guide_arrowImg.resize(229,62);
     image(guide_arrowImg, 42, 552);
     
-    //jump man
+    
     guideMan.display();
     guideMan.update();
     
@@ -93,11 +93,11 @@ class GuideScreen{
   }
     
   void update() {
-      if (mouseX > gs.backButtonX && mouseX < gs.backButtonX + gs. buttonWidth &&
-          mouseY > gs.backButtonY && mouseY < gs.backButtonY + gs.buttonWidth) {
-            gs.buttonWidth = 60;
+      if (mouseX > this.backButtonX && mouseX < this.backButtonX + this. buttonWidth &&
+          mouseY > this.backButtonY && mouseY < this.backButtonY + this.buttonWidth) {
+            this.buttonWidth = 60;
       }else{
-         gs.buttonWidth = 50;
+         this.buttonWidth = 50;
       }
   }
 }

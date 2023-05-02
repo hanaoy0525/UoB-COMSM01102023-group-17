@@ -26,14 +26,18 @@ int changeScale;
 int score;
 boolean isStart = false;
 
-GuideScreen gs;
+GuideScreen guideScreen;
 
 Lava lava;
+
+RankTable rankTable;
+String userName;
 
 //by default the game difficulty is medium
 Difficulty gameDiff=Difficulty.MEDIUM;
 
 void setup(){
+  frameRate(60);
   font = createFont("Frogie.ttf", 32);
   textFont(font);
   if(!isStart){
@@ -60,7 +64,7 @@ void setup(){
   changeScale=50;
   
   //guidescreen
-  gs = new GuideScreen();
+  guideScreen = new GuideScreen();
   
   //score displayed on the right-top of the screen
   score=0;
@@ -70,6 +74,10 @@ void setup(){
   if(gameDiff!=Difficulty.HARD){
     lava.noExist();
   }
+  
+  rankTable = new RankTable();
+  userName = "";
+  
 }
 
 void draw(){
@@ -91,7 +99,20 @@ void draw(){
   } 
   if(currentScreen == Screen.Difficulty){
     difficultyScreen();
-  } 
+  }
+  if (currentScreen == Screen.Rank) {
+    rankScreen();  
+  }
+}
+
+void rankScreen() {
+  stars.update();
+  stars.display();
+  
+  rankTable.display();
+  if (keyPressed && key == ' '){
+    currentScreen = Screen.Init;
+  }
 }
 
 void initScreen() {
@@ -111,6 +132,12 @@ void initScreen() {
   image(start, 250, 400);
   image(guide, 250, 500);
   image(difficulty, 250, 600);
+  text("rank", 200, 700);
+
+  text("Enter your name: ", width / 4 - 100, height / 3 + 80);
+  text(userName, width / 4 + 175, height / 3 + 80);
+  
+      
 }
 
 void gameScreen() {
@@ -173,10 +200,11 @@ void gameScreen() {
       platforms.set(i,generatePlatform(0, offset));
     }
   }
-  floatPlatformMove();
+  floatPlatformMove(); 
   
   if (player.yCoordinate > height || (lava.isExist && player.yCoordinate > height - lava.lavaHeight)) {
-    
+    rankTable.addEntity(userName, score);
+    userName = "";
     //lavaHeight = 0;
     currentScreen = Screen.Over;
   }
@@ -197,22 +225,22 @@ void gameOverScreen() {
   textSize(50);
   text("RETRY: R", 120, 550);
   text("MENU: SPACE", 120, 650);
-  if(keyPressed){
-    if(key == 'r' || key=='R'){
+  
+    if((keyPressed && (key == 'r' || key=='R')) || (mousePressed && (mouseX >= 123 && mouseX <= 302) && (mouseY >= 513 && mouseY <= 556))){
       setup();
       currentScreen=Screen.Play;
       gameScreen();
     }
-    if(key == ' '){
+    if((keyPressed && key == ' ') || (mousePressed && (mouseX >= 123 && mouseX <= 394) && (mouseY >= 617 && mouseY <= 653))){
       setup();
       currentScreen = Screen.Init;
       initScreen(); 
     }
- }
+ 
 }
  
 void guideScreen() { 
-    gs.display();
+    guideScreen.display();
 }
 
 void difficultyScreen() {
@@ -240,21 +268,26 @@ void mouseClicked() {
     if(mouseX > 100 && mouseX < 413 &&
       mouseY > 380 && mouseY < 450){
       currentScreen = Screen.Play;
-      setup();
       return;
     }
+    
     if(mouseX >= 200 && mouseX <= 300 && mouseY >= 480 && mouseY <= 515){
       currentScreen = Screen.Guide;
       return;
     }
+    
     if(mouseX >= 150 && mouseX <= 375 && mouseY >= 550 && mouseY <= 655){
       currentScreen = Screen.Difficulty;
       return;
     }
     
+    if (mouseX >= 200 && mouseX <= 270 && mouseY >= 678 && mouseY <= 700) {
+      currentScreen = Screen.Rank; 
+    }
+    
   } else if(currentScreen == Screen.Guide){
-     if (mouseX > gs.backButtonX && mouseX < gs.backButtonX + gs.buttonWidth &&
-        mouseY > gs.backButtonY && mouseY < gs.backButtonY + gs.buttonWidth){
+     if (mouseX >guideScreen.backButtonX && mouseX < guideScreen.backButtonX + guideScreen.buttonWidth &&
+        mouseY > guideScreen.backButtonY && mouseY < guideScreen.backButtonY + guideScreen.buttonWidth){
       currentScreen = Screen.Init;
       return;
       } 
@@ -280,6 +313,17 @@ void mouseClicked() {
         return;
       }
   }
+}
+
+void keyPressed() {
+   if (currentScreen == Screen.Init){
+     if (key == BACKSPACE){
+       userName = userName.substring(0, userName.length() - 1); 
+     } else {
+       userName += key;
+     }
+     
+   }
 }
 
 Platform generatePlatform(int heightIndex, int offset){

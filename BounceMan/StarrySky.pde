@@ -2,28 +2,31 @@ class Star {
   float x, y;
   color c;
   float speed;
+  int size;
 
   Star(float x, float y) {
     this.x = x;
     this.y = y;
     this.c = color(random(255), random(255), random(255));
     this.speed = 1;
+    this.size = (int) random(1, 4);
   }
 
   void update() {
-    x -= speed;
-    if (x < 0) {
-      x = width;
-      y = random(height);
-      c = color(random(255), random(255), random(255));
-      speed = 1;
+    x++;
+    y++;
+    if (y >= height) {
+       y = 0;
+    }
+    if (x >= width) {
+      x = 0;
     }
   }
 
   void display() {
     fill(c);
     noStroke();
-    ellipse(x, y, random(1, 4), random(1, 4));
+    ellipse(x, y, size, size);
   }
 }
 

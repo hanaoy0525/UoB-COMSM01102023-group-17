@@ -2,7 +2,7 @@ class GuideMan {
   PImage img; 
   float x, y; //img position
   float xSpeed, ySpeed;
-  float gravity;
+  float velocity;
   float groundHeight; 
   int imgWidth, imgHeight;
 
@@ -14,7 +14,7 @@ class GuideMan {
     this.x = x;
     this.y = y;
     ySpeed = 0;
-    gravity = 0.5;
+    velocity = 0.5;
     this.groundHeight = groundHeight;
   }
 
@@ -32,7 +32,7 @@ class GuideMan {
       ySpeed *= -1; // change y direction
     }
 
-    ySpeed += gravity;
+    ySpeed += velocity;
     
     display(); 
   }

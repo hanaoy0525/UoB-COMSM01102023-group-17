@@ -3,5 +3,6 @@ enum Screen {
   Play,
   Over,
   Guide,
-  Difficulty
+  Difficulty,
+  Rank
 }
