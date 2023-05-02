@@ -16,6 +16,8 @@
 
 ![alt text](Documents/bounce_man_header.png)
 
+[Project video] (https://uob-my.sharepoint.com/:v:/g/personal/al22575_bristol_ac_uk/ESUGfSegZaRKl_fmhdE9SJQB09dpaVYkpiloFHxTVytYhg?e=IrLoIp)
+
 ## Introduction 
 
 Our game is a platformer where you must control a character and bounce from platform to platform while endlessly climbing higher and avoiding falling. There are no levels in this game, instead the platforms are randomly generated each session. As the player climbs higher their score increases. This is important for giving players a sense of achievement while also allowing for replayability as players want to try and get a higher score. 
