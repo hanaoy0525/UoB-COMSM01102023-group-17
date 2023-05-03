@@ -24,7 +24,6 @@
 
 Our game is a platformer where you must control a character and bounce from platform to platform while endlessly climbing higher and avoiding falling. There are no levels in this game, instead the platforms are randomly generated each session. As the player climbs higher their score increases. This is important for giving players a sense of achievement while also allowing for replayability as players want to try and get a higher score. 
 
-![alt text](Documents/gameplay.gif)
 Our game is based around Doodle Jump, released in 2009 originally for iOS devices. The gimmick for our game is having the player constantly be chased by lava. This prevents the possibility of players idling for a long period of time and provides an incentive for them to move quickly. 
 
 ![alt text](Documents/lavadeath.gif)
