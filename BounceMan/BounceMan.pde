@@ -18,7 +18,8 @@ PImage arrow;
 PImage easy;
 PImage medium;
 PImage hard;
-
+PImage rank;
+PImage enter;
 PFont font;
 
 int changeCur;
@@ -126,6 +127,11 @@ void initScreen() {
   guide.resize(guide.width/2, guide.height/2);
   difficulty = loadImage("difficulty.png");
   difficulty.resize(difficulty.width/2, difficulty.height/2);
+  rank = loadImage("rank.png");
+  rank.resize(rank.width/2, rank.height/2);
+  enter = loadImage("enter.png");
+  enter.resize(enter.width/2, enter.height/2);
+
 
   textSize(30);
   imageMode(CENTER);
@@ -133,10 +139,11 @@ void initScreen() {
   image(start, 250, 400);
   image(guide, 250, 500);
   image(difficulty, 250, 600);
-  text("rank", 200, 700);
-
-  text("Enter your name: ", width / 4 - 100, height / 3 + 80);
-  text(userName, width / 4 + 175, height / 3 + 80);
+  image(rank, 250, 700);
+  //text("rank", 200, 700);
+  image(enter, 250, 300);
+  //text("Enter your name: ", width / 4 - 100, height / 3 + 80);
+  text(userName, width / 3 + 20, height / 3 + 90);
   
       
 }
@@ -213,8 +220,8 @@ void gameOverScreen() {
   background(0);
   textSize(95);
   //text("GAME OVER", 10, 200);
-  gameOver = loadImage("GameOver.png");
-  gameOver.resize(gameOver.width/2, gameOver.height/2);
+  gameOver = loadImage("gameover2.png");
+  gameOver.resize(gameOver.width + 120, gameOver.height + 120);
   imageMode(CENTER);
   image(gameOver, 250,200);
   textSize(70);
