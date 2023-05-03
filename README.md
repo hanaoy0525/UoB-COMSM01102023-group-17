@@ -16,7 +16,9 @@
 
 ![alt text](Documents/bounce_man_header.png)
 
-[## Project video](https://uob-my.sharepoint.com/:v:/g/personal/al22575_bristol_ac_uk/EYT7kedYakVCgqSzHDCTdRIBsRCc6wFip8fNeHKTGZ24tg?e=cVnHQu)
+## Project Video
+
+[BounceMan Demo Video](https://uob-my.sharepoint.com/:v:/g/personal/al22575_bristol_ac_uk/EYT7kedYakVCgqSzHDCTdRIBsRCc6wFip8fNeHKTGZ24tg?e=cVnHQu)
 
 ## Introduction 
 
