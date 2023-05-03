@@ -24,9 +24,10 @@
 
 Our game is a platformer where you must control a character and bounce from platform to platform while endlessly climbing higher and avoiding falling. There are no levels in this game, instead the platforms are randomly generated each session. As the player climbs higher their score increases. This is important for giving players a sense of achievement while also allowing for replayability as players want to try and get a higher score. 
 
+![alt text](Documents/gameplay.gif)
 Our game is based around Doodle Jump, released in 2009 originally for iOS devices. The gimmick for our game is having the player constantly be chased by lava. This prevents the possibility of players idling for a long period of time and provides an incentive for them to move quickly. 
 
-![alt text] (Documents/lavadeath.gif)
+![alt text](Documents/lavadeath.gif)
 
 The appeal of the game comes from its simplicity. There are only two inputs, left arrow and right arrow. This means it is easily accessible for players of any skill level. Each play session is also very quick, only lasting a few minutes but with the possibility of lasting for an infinite amount of time. This makes it a suitable game to pick up and play quickly which was why the original Doodle Jump was such a huge success on mobile devices.
 
@@ -106,13 +107,13 @@ When the player character is moving upwards and reaches the middle of the screen
 
 The issue we now had to tackle was how to simulate gravity physics on the player character. In the player update() function the velocity of the player is increased. This velocity is then applied to the y location of the player character. This means each time the screen is refreshed the player falls at a faster rate than the last time it was refreshed to simulate gravity increasing the speed of the fall. When the player comes into contact with a platform the velocity is decreased. This means the player is moved upwards next time the screen is refreshed. The velocity is again decreased with each screen refresh, so the speed of the upwards movement is slowly being decreased until the character eventually starts to fall again.  
 
-![alt text] (Documents/gameplay.gif)
+![alt text](Documents/gameplay.gif)
 
 The final challenge was balancing the game. We had to decide the size of the player and platforms. We used the original Doodle Jump for reference. The platforms would take up roughly 1/8th of the screen and the character would be slightly smaller than the platform. We also decided to make the platforms thick enough to visually help the user as the platforms would stand out more. We also decided to have each platform type be visually different. Players seeing a green platform knew it was safe while a yellow platform was riskier. Enemy platforms were also added to bring some challenge to the game. We also had to choose the speed of the player character, both vertically and horizontally. This decision was tougher as it was something we couldn’t just see and decide was okay. 
 
 As a team we played the game during each phase of development. This means everyone was able to give feedback on the difficulty. Our team is made up of casual, regular and avid gamers. This was especially important as we had feedback from all our stakeholders. During our evaluation phase we conducted further balance testing. We implemented a difficulty mode to make sure this game was suitable for all skill levels. After internal discussions we decided to remove the enemies and lava from the easy difficulty. This would give the player the chance to familiarize themselves with the premise and controls. With each difficulty increase an extra obstacle would be added to the game, with medium adding enemies and hard adding lava.
 
-![alt text] (Documents/enemydeath.gif)
+![alt text](Documents/enemydeath.gif)
 
 Eventually we came to a balancing decision we believe is challenging, fair and most importantly fun.
 
