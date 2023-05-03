@@ -133,30 +133,19 @@ void initScreen() {
   enter.resize(enter.width/2, enter.height/2);
 
 
-  fill(174,0,211);
+  fill(25,25,25);
   textSize(30);
   imageMode(CENTER);
   image(gameTitle, 250,200);
   image(start, 250, 400);
   image(guide, 250, 500);
   image(difficulty, 250, 600);
-<<<<<<< HEAD
-  text("rank", 224, 699);
   
   //player name input
-  stroke(235);
-  rect(327, 257, 106 ,32);
-  text("Enter your name: ", width / 4 - 61, height / 3 + 20);
-  fill(255);
-  text(userName, 328, height / 3 + 17);
-  
-=======
+  fill(205);
   image(rank, 250, 700);
-  //text("rank", 200, 700);
   image(enter, 250, 300);
-  //text("Enter your name: ", width / 4 - 100, height / 3 + 80);
-  text(userName, width / 3 + 20, height / 3 + 90);
->>>>>>> 6c87b0482485b6f99f51fee488d9294413faf34b
+  text(userName, width / 3 + 35, height / 3 + 92);
   
       
 }
