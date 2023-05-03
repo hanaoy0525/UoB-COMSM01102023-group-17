@@ -6,7 +6,7 @@
 | Eamon Morrissey |
 | Yujie Shi(Mason) |
 | Haoyan Wang |
-| Yinyue Zhang |
+| Xinyue Zhang(Kahty) |
 
 ## Group Photo
 
@@ -170,4 +170,4 @@ In anticipation of our game reaching record sales, we will now begin planning on
 | Eamon Morrissey | 1 |
 | Yujie Shi(Mason) | 1 |
 | Haoyan Wang | 1 |
-| Yinyue Zhang | 1 |
+| Xinyue Zhang(Kahty) | 1 |
