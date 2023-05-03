@@ -1,39 +1,28 @@
-class GuideMan {
-  PImage img; 
-  float x, y; //img position
-  float xSpeed, ySpeed;
-  float velocity;
-  float groundHeight; 
-  int imgWidth, imgHeight;
+class GuideMan{
+  PImage image;
+  float yCoordinate;
+  float ySpeed;
 
-  GuideMan (String imagePath, float x, float y, float groundHeight) {
-    img = loadImage(imagePath); 
-    imgWidth = 60;
-    imgHeight = 50; 
-    img.resize(imgWidth, imgHeight); 
-    this.x = x;
-    this.y = y;
-    ySpeed = 0;
-    velocity = 0.5;
-    this.groundHeight = groundHeight;
+  GuideMan (String imagePath, float yCoordinate) {
+    image = loadImage (imagePath);
+    image.resize(60, 50);
+    this.yCoordinate = yCoordinate;
+    this.ySpeed = 0;
   }
-
+  
   void display() {
-    imageMode(CORNER);
-    image(img, x, y); 
+    imageMode (CORNER);
+    image(image, 380, yCoordinate);
   }
-
-  void update() {
-    
-    y += ySpeed;
-
-    if (y > height - groundHeight) {
-      y = height - groundHeight;
-      ySpeed *= -1; // change y direction
+  
+  void update(){
+  yCoordinate += ySpeed;
+  
+    if (yCoordinate > height-100){
+      yCoordinate = height-100;
+      ySpeed = -15; 
+    } else {
+      ySpeed += 0.5; 
     }
-
-    ySpeed += velocity;
-    
-    display(); 
   }
 }

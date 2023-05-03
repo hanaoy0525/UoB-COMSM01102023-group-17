@@ -6,7 +6,7 @@
 | Eamon Morrissey |
 | Yujie Shi(Mason) |
 | Haoyan Wang |
-| Yinyue Zhang |
+| Xinyue Zhang |
 
 ## Group Photo
 

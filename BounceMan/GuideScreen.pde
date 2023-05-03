@@ -28,7 +28,7 @@ class GuideScreen{
     backButtonY =  600;
     backArrowImg.resize(buttonWidth, buttonWidth);
     
-    guideMan = new GuideMan("setting_background_char.png", 350, 500, 100);
+    guideMan = new GuideMan("setting_background_char.png",500);
     
     
     //guide content  
@@ -66,7 +66,7 @@ class GuideScreen{
     image(backArrowImg, backButtonX, backButtonY, buttonWidth,buttonWidth);
     fill(255);
     textSize(40);
-    text("GOT IT!", backButtonX + 70 , backButtonY + 35);
+    text("GOT IT!", backButtonX + 70 , backButtonY + 40);
     
     //guide content
     textSize(16);

@@ -127,16 +127,22 @@ void initScreen() {
   difficulty = loadImage("difficulty.png");
   difficulty.resize(difficulty.width/2, difficulty.height/2);
 
+  fill(174,0,211);
   textSize(30);
   imageMode(CENTER);
   image(gameTitle, 250,200);
   image(start, 250, 400);
   image(guide, 250, 500);
   image(difficulty, 250, 600);
-  text("rank", 200, 700);
-
-  text("Enter your name: ", width / 4 - 100, height / 3 + 80);
-  text(userName, width / 4 + 175, height / 3 + 80);
+  text("rank", 224, 699);
+  
+  //player name input
+  stroke(235);
+  rect(327, 257, 106 ,32);
+  text("Enter your name: ", width / 4 - 61, height / 3 + 20);
+  fill(255);
+  text(userName, 328, height / 3 + 17);
+  
   
       
 }
@@ -203,7 +209,6 @@ void gameScreen() {
   if (player.yCoordinate > height || (lava.isExist && player.yCoordinate > height - lava.lavaHeight)) {
     rankTable.addEntity(userName, score);
     userName = "";
-    //lavaHeight = 0;
     currentScreen = Screen.Over;
   }
 }
@@ -317,7 +322,9 @@ void mouseClicked() {
 void keyPressed() {
    if (currentScreen == Screen.Init){
      if (key == BACKSPACE){
-       userName = userName.substring(0, userName.length() - 1); 
+       if(userName.length()>1){
+         userName = userName.substring(0, userName.length() - 1); 
+       }
      } else {
        userName += key;
      }
