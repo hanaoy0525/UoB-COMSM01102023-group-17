@@ -16,7 +16,7 @@
 
 ![alt text](Documents/bounce_man_header.png)
 
-[Project video](https://uob-my.sharepoint.com/:v:/g/personal/al22575_bristol_ac_uk/ESUGfSegZaRKl_fmhdE9SJQB09dpaVYkpiloFHxTVytYhg?e=IrLoIp)
+[## Project video](https://uob-my.sharepoint.com/:v:/g/personal/al22575_bristol_ac_uk/EYT7kedYakVCgqSzHDCTdRIBsRCc6wFip8fNeHKTGZ24tg?e=cVnHQu)
 
 ## Introduction 
 
@@ -151,3 +151,11 @@ If we were to do this project again we would focus more on team roles. It would 
 Overall, as a team we are very proud to have a working piece of software to show for it.  
 
 In anticipation of our game reaching record sales, we will now begin planning on a sequel: 2Bounce2MAN (name not final). This version will include cutting edge 3d graphics and a multiplayer mode. We can also expand on the characters and lore, leading to more merch sales and eventually a cinematic universe. 
+
+| Group Members: | Contribution |
+| ------------- | ------------- |
+| Yutao Mo | 1 |
+| Eamon Morrissey | 1 |
+| Yujie Shi(Mason) | 1 |
+| Haoyan Wang | 1 |
+| Yinyue Zhang | 1 |
