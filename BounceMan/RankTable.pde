@@ -37,7 +37,7 @@ class RankTable {
    }
    
    void addEntity(String name, int score) {
-     if (name.length() == 0) {
+     if (name.equals("")) {
          Integer num = (int) random(1000, 10000);
          name = "Unknown" + Integer.toString(num);
      }

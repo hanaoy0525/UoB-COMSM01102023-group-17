@@ -33,6 +33,7 @@ Lava lava;
 
 RankTable rankTable;
 String userName;
+String temp;
 
 //by default the game difficulty is medium
 Difficulty gameDiff=Difficulty.MEDIUM;
@@ -77,8 +78,8 @@ void setup(){
   }
   
   rankTable = new RankTable();
-  userName = "";
   
+  userName = "";
 }
 
 void draw(){
@@ -210,8 +211,8 @@ void gameScreen() {
   floatPlatformMove(); 
   
   if (player.yCoordinate > height || (lava.isExist && player.yCoordinate > height - lava.lavaHeight)) {
+    println(userName);
     rankTable.addEntity(userName, score);
-    userName = "";
     currentScreen = Screen.Over;
   }
 }
@@ -273,7 +274,9 @@ void mouseClicked() {
   if(currentScreen == Screen.Init){
     if(mouseX > 100 && mouseX < 413 &&
       mouseY > 380 && mouseY < 450){
+      temp = userName;
       setup();
+      userName = temp;
       currentScreen = Screen.Play;
       return;
     }
@@ -330,8 +333,9 @@ void keyPressed() {
        }
      } else {
        userName += key;
+       temp = userName;
      }
-     
+     println(userName);
    }
 }
 
